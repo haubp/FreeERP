@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/haubui/Development/projects/FreeERP/ERP/wwwroot/tailwind.min.css",
+      "PackagePath": "staticwebassets/tailwind.min.css"
+    },
+    {
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.FreeERP.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.build.FreeERP.props",
+      "PackagePath": "build\\FreeERP.props"
+    },
+    {
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.FreeERP.props",
+      "PackagePath": "buildMultiTargeting\\FreeERP.props"
+    },
+    {
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.FreeERP.props",
+      "PackagePath": "buildTransitive\\FreeERP.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
