@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,18 +7,21 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'MyFirstApp' " />
+
+  <ItemGroup>
+    <Compile Remove="Controllers\Login\LoginController.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\CustomerSuccess\" />
+    <Folder Include="Views\Engineer\" />
+    <Folder Include="Views\Sale\" />
     <Folder Include="wwwroot\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Views\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />
-    <Folder Include="Model\" />
     <Folder Include="Model\Departments\" />
-    <Folder Include="Model\Tickets\" />
     <Folder Include="Controllers\Departments\" />
   </ItemGroup>
   <ItemGroup>
@@ -30,5 +33,17 @@
     <None Remove="Model\Departments\" />
     <None Remove="Model\Tickets\" />
     <None Remove="Controllers\Departments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controllers\Login\LoginController.cs">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LoginController.cs</LastGenOutput>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoginController.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 </Project>

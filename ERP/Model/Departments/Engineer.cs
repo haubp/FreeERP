@@ -1,11 +1,11 @@
 ﻿using System;
-namespace MyFirstApp.Model
+namespace FreeERP.Model
 {
-	public class Engineer
-	{
-		public Engineer()
-		{
-		}
-	}
+    public class Engineer
+    {
+        public Engineer()
+        {
+        }
+    }
 }
 

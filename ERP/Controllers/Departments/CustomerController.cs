@@ -6,21 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MyFirstApp.Controllers.Departments
+namespace FreeERP.Controllers.Departments
 {
     public class CustomerController : Controller
     {
         [HttpGet]
-        [Route("/customer/{customerId}")]
-        public IActionResult GetCustomer(string? customerId)
+        [Route("/customer/index")]
+        public IActionResult Index([FromCookie(Name = "user_id")] string? userId)
         {
-            return View();
-        }
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
 
-        [HttpPut]
-        [Route("/customer")]
-        public IActionResult CreateCustomer(string? userName, string? password)
-        {
             return View();
         }
     }

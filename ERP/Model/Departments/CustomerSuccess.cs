@@ -1,11 +1,11 @@
 ﻿using System;
-namespace MyFirstApp.Model
+namespace FreeERP.Model
 {
-	public class CustomerSuccess
-	{
-		public CustomerSuccess()
-		{
-		}
-	}
+    public class CustomerSuccess
+    {
+        public CustomerSuccess()
+        {
+        }
+    }
 }
 

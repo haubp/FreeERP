@@ -6,13 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MyFirstApp.Controllers.tickets
+namespace FreeERP.Controllers.tickets
 {
     public class SaleTicketController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        [HttpPut]
+        [Route("/ticket/sale")]
+        public IActionResult CreateSaleTicket([FromCookie(Name = "user_id")] string? userId)
         {
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             return View();
         }
     }

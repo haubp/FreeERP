@@ -1,11 +1,11 @@
 ﻿using System;
-namespace MyFirstApp.UIModels
+namespace FreeERP.UIModels
 {
-	public class Sale
-	{
-		public Sale()
-		{
-		}
-	}
+    public class Sale
+    {
+        public Sale()
+        {
+        }
+    }
 }
 

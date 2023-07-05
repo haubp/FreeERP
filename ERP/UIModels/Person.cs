@@ -1,16 +1,16 @@
 ﻿using System;
-namespace MyFirstApp.Models
+namespace FreeERP.Models
 {
-	public class Person
-	{
-		public string? Name { get; set; }
-		public DateTime? DateOfBirth { get; set; }
-		public Gender PersonGender { get; set; }
+    public class Person
+    {
+        public string? Name { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public Gender PersonGender { get; set; }
 
-	}
-	public enum Gender
-	{
-		Male, Female, Other
-	}
+    }
+    public enum Gender
+    {
+        Male, Female, Other
+    }
 }
 
