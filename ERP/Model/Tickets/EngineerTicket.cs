@@ -1,4 +1,6 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
+
 namespace FreeERP.Model.Tickets
 {
     public class EngineerTicket : Ticket
@@ -6,9 +8,11 @@ namespace FreeERP.Model.Tickets
         public EngineerTicket(string userID, string content) : base(TicketType.Engineer, userID, content)
         {
         }
-        public override bool SaveToDB()
+        public override string SaveToDB()
         {
-            string connectionString = "server=your_server;database=your_database;user=your_username;password=your_password";
+            string connectionString = "server=localhost:3306;database=freeerp;user=root";
+
+            string dbError = "";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -36,11 +40,11 @@ namespace FreeERP.Model.Tickets
                 catch (Exception ex)
                 {
                     // Handle any exceptions that occurred during the database operation
-                    return BadRequest(ex.Message);
+                    dbError = ex.Message;
                 }
             }
 
-            return true;
+            return dbError;
         }
     }
 }

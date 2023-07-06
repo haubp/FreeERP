@@ -13,10 +13,9 @@ namespace FreeERP.Controllers.tickets
     {
         [HttpPost]
         [Route("/ticket/cs")]
-        public IActionResult CreateCSTicket(
-            [FromCookie(Name = "user_id")] string? userId,
-            [FromForm(Name = "content")] string? content)
+        public IActionResult CreateCSTicket([FromForm(Name = "content")] string content)
         {
+            string? userId = Request.Cookies["user_id"];
             if (userId == null)
             {
                 return RedirectToAction("Login", "Login");

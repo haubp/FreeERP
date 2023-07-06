@@ -13,8 +13,9 @@ namespace FreeERP.Controllers.Departments
     {
         [HttpGet]
         [Route("/customer/index")]
-        public IActionResult Index([FromCookie(Name = "user_id")] string? userId)
+        public IActionResult Index()
         {
+            string? userId = Request.Cookies["user_id"];
             if (userId == null)
             {
                 return RedirectToAction("Login", "Login");

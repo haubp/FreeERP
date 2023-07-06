@@ -14,10 +14,10 @@ namespace FreeERP.Controllers.tickets
         [HttpPost]
         [Route("/ticket/sale")]
         public IActionResult CreateSaleTicket(
-            [FromCookie(Name = "user_id")] string? userId,
-            [FromForm(Name = "products")] List<string>? products,
-            [FromForm(Name = "content")] string? content)
+            [FromForm(Name = "products")] List<string> products,
+            [FromForm(Name = "content")] string content)
         {
+            string? userId = Request.Cookies["user_id"];
             if (userId == null)
             {
                 return RedirectToAction("Login", "Login");

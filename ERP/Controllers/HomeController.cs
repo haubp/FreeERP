@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyFirstApp.Models;
+using FreeERP.Model;
 
 namespace MyFirstApp.Controllers
 {
@@ -11,9 +11,10 @@ namespace MyFirstApp.Controllers
     {
         [Route("/home")]
         [Route("/")]
-        public IActionResult Index([FromCookie(Name = "user_id")] string? userId)
+        public IActionResult Index()
         {
-            if (userId)
+            string? userId = Request.Cookies["user_id"];
+            if (userId != null)
             {
                 Credential credential = new Credential(userId);
                 switch (credential.type)

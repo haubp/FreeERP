@@ -12,7 +12,7 @@ namespace FreeERP.Model.Tickets
             UserID = userID;
             Content = content;
         }
-        public abstract bool SaveToDB();
+        public abstract string SaveToDB();
     }
     public enum TicketType
     {
