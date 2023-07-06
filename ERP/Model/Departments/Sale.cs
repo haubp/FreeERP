@@ -7,6 +7,11 @@ namespace FreeERP.Model
         public Sale()
         {
         }
+        public List<string> Tickets()
+        {
+            // Query sale tickets
+            return new List<string>();
+        }
     }
 }
 

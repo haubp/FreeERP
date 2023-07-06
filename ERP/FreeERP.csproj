@@ -15,9 +15,6 @@
     <Content Remove="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\CustomerSuccess\" />
-    <Folder Include="Views\Engineer\" />
-    <Folder Include="Views\Sale\" />
     <Folder Include="wwwroot\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />

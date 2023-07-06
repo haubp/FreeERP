@@ -10,10 +10,19 @@ namespace FreeERP.Controllers.Departments
 {
     public class SaleController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        [HttpGet]
+        [Route("/sale/index")]
+        public IActionResult Index([FromCookie(Name = "user_id")] string? userId)
         {
-            return View();
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            // Query list of sale ticket
+            Sale sale = new Sale();
+
+            return View(sale.Tickets());
         }
     }
 }

@@ -1,39 +1,23 @@
-﻿@{
-    ViewData["Title"] = "Home";
-}
-
-@model List<Person>
-
-<h1>Welcome</h1>
-@foreach (Person person in Model)
-{
-    @*<text>Hello</text>*@
-    <h2>Hello @person.Name</h2>
-    @if (person.DateOfBirth.HasValue)
-    {
-        double age = Math.Round((DateTime.Now - person.DateOfBirth).Value.TotalDays / 365.25);
-        <h3>@age years old</h3>
-    }
-    else
-    {
-        <h3>Date of birth is null</h3>
-    }
-    @switch (person.PersonGender)
-    {
-        case Gender.Male:
-            <h3>Gender is male</h3>
-            break;
-        case Gender.Female:
-            <h3>Gender is female</h3>
-            break;
-        case Gender.Other:
-            <h3>Gender is other</h3>
-            break;
-    }
-    <a href="/person-details/@person.Name">Details</a>
-}
-
-@section footer_section
-{
-    <p>Contact support: 0378498818</p>
-}
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account ANd Login:</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <input type="submit" value="Login">
+        </div>
+    </form>
+</body>
+</html>

@@ -3,22 +3,15 @@ namespace FreeERP.Model
 {
     public class Customer
     {
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string CompanyName { get; set; }
-        public string Domain { get; set; }
-        public string PhoneNumber { get; set; }
-        public Customer(string name, string address, string companyName, string domain, string phoneNumber)
+        public string UserID { get; set; }
+        public Customer(string userID)
         {
-            Name = name;
-            Address = address;
-            CompanyName = companyName;
-            Domain = domain;
-            PhoneNumber = phoneNumber;
+            UserID = userID;
         }
-        public bool SaveToDB()
+        public List<string> Tickets()
         {
-
+            // Query ticket created by that user
+            return new List<string>();
         }
     }
 }

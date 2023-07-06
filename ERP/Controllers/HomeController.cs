@@ -9,36 +9,27 @@ namespace MyFirstApp.Controllers
 {
     public class HomeController : Controller
     {
-        [Route("home")]
+        [Route("/home")]
         [Route("/")]
-        public IActionResult Index()
+        public IActionResult Index([FromCookie(Name = "user_id")] string? userId)
         {
-            ViewData["appTitle"] = "Asp.Net Core Demo App";
-            List<Person> people = new List<Person>()
+            if (userId)
             {
-                new Person() {Name = "JohnA", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Male},
-                new Person() {Name = "JohnB", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Female},
-                new Person() {Name = "JohnC", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Other}
-            };
-            return View(people);
-        }
-
-        [Route("person-details/{name}")]
-        public IActionResult Details(string? name)
-        {
-            if (name == null)
-            {
-                return Content("Person's name can't be null");
+                Credential credential = new Credential(userId);
+                switch (credential.type)
+                {
+                    case AccountType.Customer:
+                        return RedirectToAction("Customer", "Index");
+                    case AccountType.CustomerSuccess:
+                        return RedirectToAction("CustomerSuccess", "Index");
+                    case AccountType.Sale:
+                        return RedirectToAction("Sale", "Index");
+                    case AccountType.Engineer:
+                        return RedirectToAction("Engineer", "Index");
+                }
             }
-            List<Person> people = new List<Person>()
-            {
-                new Person() {Name = "JohnA", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Male},
-                new Person() {Name = "JohnB", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Female},
-                new Person() {Name = "JohnC", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Other}
-            };
-            Person? matchingPerson = people.Where(temp => temp.Name == name).FirstOrDefault();
-            return View(matchingPerson);
+
+            return View();
         }
     }
 }
-

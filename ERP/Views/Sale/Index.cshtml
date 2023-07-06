@@ -1,0 +1,29 @@
+@model List<string>
+
+    <body>
+        <div>TICKET FOR CUSTOMER SUCCESS</div>
+        <div>
+            <form action="/ticket/cs" method="POST">
+                <label for="content">Content:</label>
+                <input type="text" id="content" name="content" required><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div>TICKET FOR ENGINEER</div>
+        <div>
+            <form action="/ticket/engineer" method="POST">
+                <label for="content">Content:</label>
+                <input type="text" id="content" name="content" required><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div>Ticket for Sale Department:</div>
+        <ul>
+            @foreach (var ticket in Model)
+            {
+                <li>@ticket</li>
+            }
+        </ul>
+    </body>

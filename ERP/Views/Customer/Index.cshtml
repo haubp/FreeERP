@@ -1,1 +1,28 @@
-<h1>Customer Dashboard</h1>
+@model List<string>
+
+    <body>
+        <div>TICKET FOR SALES</div>
+        <div>
+            <form action="/ticket/sale" method="POST">
+                <label for="content">Content:</label>
+                <input type="text" id="content" name="content" required><br><br>
+
+                <label for="products">Product:</label>
+                <select id="products" name="products[]" multiple required>
+                    <option value="product_1">Product 1</option>
+                    <option value="product_2">Product 2</option>
+                    <option value="product_3">Product 3</option>
+                </select><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div>Tickets created</div>
+        <ul>
+            @foreach (var ticket in Model)
+            {
+                <li>@ticket</li>
+            }
+        </ul>
+    </body>
