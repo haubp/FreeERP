@@ -1,30 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\ERP\\FreeERP.csproj": {}
+    "/Users/haubui/Development/projects/FreeERP/ERP/FreeERP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\ERP\\FreeERP.csproj": {
+    "/Users/haubui/Development/projects/FreeERP/ERP/FreeERP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\ERP\\FreeERP.csproj",
+        "projectUniqueName": "/Users/haubui/Development/projects/FreeERP/ERP/FreeERP.csproj",
         "projectName": "FreeERP",
-        "projectPath": "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\ERP\\FreeERP.csproj",
-        "packagesPath": "C:\\Users\\hau.bui\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\ERP\\obj\\",
+        "projectPath": "/Users/haubui/Development/projects/FreeERP/ERP/FreeERP.csproj",
+        "packagesPath": "/Users/haubui/.nuget/packages/",
+        "outputPath": "/Users/haubui/Development/projects/FreeERP/ERP/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\hau.bui\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/haubui/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/sdk/7.0.302/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,11 +44,20 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -16,12 +16,40 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/haubui/Development/projects/FreeERP/ERP
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/haubui/Development/projects/FreeERP/ERP/Views/Customer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3VzdG9tZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/haubui/Development/projects/FreeERP/ERP/Views/CustomerSuccess/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3VzdG9tZXJTdWNjZXNzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/haubui/Development/projects/FreeERP/ERP/Views/CustomerSuccessTicket/CreateCSTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3VzdG9tZXJTdWNjZXNzVGlja2V0L0NyZWF0ZUNTVGlja2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/haubui/Development/projects/FreeERP/ERP/Views/Engineer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5naW5lZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/haubui/Development/projects/FreeERP/ERP/Views/EngineerTicket/CreateEngineerTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW5naW5lZXJUaWNrZXQvQ3JlYXRlRW5naW5lZXJUaWNrZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/haubui/Development/projects/FreeERP/ERP/Views/Home/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/haubui/Development/projects/FreeERP/ERP/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/haubui/Development/projects/FreeERP/ERP/Views/Sale/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FsZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/haubui/Development/projects/FreeERP/ERP/Views/SaleTicket/CreateSaleTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FsZVRpY2tldC9DcmVhdGVTYWxlVGlja2V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/haubui/Development/projects/FreeERP/ERP/Views/Shared/_Layout.cshtml]
