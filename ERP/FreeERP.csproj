@@ -6,11 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'MyFirstApp' " />
-
-  <ItemGroup>
-    <Compile Remove="Controllers\Login\LoginController.cs" />
-  </ItemGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'FreeERP' " />
   <ItemGroup>
     <Content Remove="wwwroot\" />
   </ItemGroup>
@@ -19,7 +15,6 @@
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="Model\Departments\" />
-    <Folder Include="Controllers\Departments\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -32,7 +27,7 @@
     <None Remove="Controllers\Departments\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Controllers\Login\LoginController.cs">
+    <None Include="Controllers\LoginController.cs">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LoginController.cs</LastGenOutput>
       <DesignTime>True</DesignTime>
@@ -45,5 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.33" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Controllers\LoginController.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoginController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

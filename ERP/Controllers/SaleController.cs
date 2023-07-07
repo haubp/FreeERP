@@ -7,12 +7,12 @@ using FreeERP.Model;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FreeERP.Controllers.Departments
+namespace FreeERP.Controllers
 {
-    public class EngineerController : Controller
+    public class SaleController : Controller
     {
         [HttpGet]
-        [Route("/engineer/index")]
+        [Route("/sale/index")]
         public IActionResult Index()
         {
             string? userId = Request.Cookies["user_id"];
@@ -21,10 +21,10 @@ namespace FreeERP.Controllers.Departments
                 return RedirectToAction("Login", "Login");
             }
 
-            // Query list of engineer ticket
-            Engineer engineer = new Engineer();
+            // Query list of sale ticket
+            Sale sale = new Sale();
 
-            return View(engineer.Tickets());
+            return View(sale.Tickets());
         }
     }
 }

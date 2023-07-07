@@ -7,7 +7,7 @@ using FreeERP.Model.Tickets;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FreeERP.Controllers.tickets
+namespace FreeERP.Controllers
 {
     public class SaleTicketController : Controller
     {

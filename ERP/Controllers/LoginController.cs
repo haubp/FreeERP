@@ -11,37 +11,36 @@ namespace FreeERP.Controllers.Login
 {
     public class LoginController : Controller
     {
-        [HttpPost]
         [Route("/login")]
-        public IActionResult Login([FromForm(name = "username")] string username, [FromForm(name = "password")] string password)
+        public IActionResult Login([FromForm(Name = "username")] string username, [FromForm(Name = "password")] string password)
         {
             // Query user id
             Credential credential = new Credential(username, password);
             string user_id = credential.QueryUser();
 
             // Set Cookie contains user id
+            string cookieName = "user_id";
+            string cookieValue = user_id;
             var cookieOptions = new CookieOptions
             {
-                Name = "user_id",
-                Value = user_id,
                 Expires = DateTime.Now.AddDays(1),
                 Path = "/"
             };
-            Response.Cookies.Append(cookieOptions.Name, cookieOptions.Value, cookieOptions);
+            Response.Cookies.Append(cookieName, cookieValue, cookieOptions);
 
             switch (credential.type)
             {
                 case AccountType.Customer:
-                    return RedirectToAction("Customer", "Index");
+                    return RedirectToAction("Index", "Customer");
                 case AccountType.CustomerSuccess:
-                    return RedirectToAction("CustomerSuccess", "Index");
+                    return RedirectToAction("Index", "CustomerSuccess");
                 case AccountType.Sale:
-                    return RedirectToAction("Sale", "Index");
+                    return RedirectToAction("Index", "Sale");
                 case AccountType.Engineer:
-                    return RedirectToAction("Engineer", "Index");
+                    return RedirectToAction("Index", "Engineer");
             }
 
-            return OK(user);
+            return View();
         }
     }
 }

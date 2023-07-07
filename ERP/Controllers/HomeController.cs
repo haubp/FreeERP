@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FreeERP.Model;
 
-namespace MyFirstApp.Controllers
+namespace FreeERP.Controllers
 {
     public class HomeController : Controller
     {
@@ -20,13 +20,13 @@ namespace MyFirstApp.Controllers
                 switch (credential.type)
                 {
                     case AccountType.Customer:
-                        return RedirectToAction("Customer", "Index");
+                        return RedirectToAction("Index", "Customer");
                     case AccountType.CustomerSuccess:
-                        return RedirectToAction("CustomerSuccess", "Index");
+                        return RedirectToAction("Index", "CustomerSuccess");
                     case AccountType.Sale:
-                        return RedirectToAction("Sale", "Index");
+                        return RedirectToAction("Index", "Sale");
                     case AccountType.Engineer:
-                        return RedirectToAction("Engineer", "Index");
+                        return RedirectToAction("Index", "Engineer");
                 }
             }
 
