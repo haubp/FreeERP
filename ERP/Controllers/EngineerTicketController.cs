@@ -22,7 +22,11 @@ namespace FreeERP.Controllers
             }
 
             EngineerTicket ticket = new EngineerTicket(userId, content);
-            ticket.SaveToDB();
+            string error = ticket.SaveToDB();
+
+            if (error != "") {
+                return Ok(error);
+            }
 
             return View();
         }

@@ -20,5 +20,12 @@ namespace FreeERP.Model.Tickets
         Sale,
         Engineer
     }
+    public enum TicketStatus
+    {
+        Open,
+        InProgress,
+        Pending,
+        Resolve
+    }
 }
 

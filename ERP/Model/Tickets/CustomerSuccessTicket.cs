@@ -10,7 +10,7 @@ namespace FreeERP.Model.Tickets
         }
         public override string SaveToDB()
         {
-            string connectionString = "server=localhost:3306;database=freeerp;user=root";
+            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
 
             string dbError = "";
 
@@ -20,26 +20,17 @@ namespace FreeERP.Model.Tickets
                 {
                     connection.Open();
 
-                    // Execute your database operations here
-                    string query = "SELECT * FROM your_table";
-                    MySqlCommand command = new MySqlCommand(query, connection);
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            // Access data from the reader
-                            int id = reader.GetInt32("id");
-                            string name = reader.GetString("name");
+                    string query = String.Format($"INSERT INTO CustomerSuccessTicket " +
+                        $"(date_created, user_id, content) " +
+                        "values (CURDATE(), {0}, \"{1}\")", Convert.ToInt32(UserID), Content);
 
-                            // Do something with the retrieved data
-                        }
-                    }
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.ExecuteReader();
 
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
-                    // Handle any exceptions that occurred during the database operation
                     dbError = ex.Message;
                 }
             }

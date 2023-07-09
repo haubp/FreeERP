@@ -15,6 +15,7 @@
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="Model\Departments\" />
+    <Folder Include="Views\Ticket\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -25,6 +26,7 @@
     <None Remove="Model\Departments\" />
     <None Remove="Model\Tickets\" />
     <None Remove="Controllers\Departments\" />
+    <None Remove="Views\Ticket\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\LoginController.cs">

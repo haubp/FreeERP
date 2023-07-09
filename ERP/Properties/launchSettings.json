@@ -1,14 +1,22 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:5151",
+      "sslPort": 0
+    }
+  },
   "profiles": {
     "FreeERP": {
       "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "http://localhost:26452",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5151",
-      "dotnetRunMessages": true,
       "nativeDebugging": true,
+      "dotnetRunMessages": true,
       "sqlDebugging": true
     },
     "IIS Express": {
@@ -19,14 +27,6 @@
       },
       "nativeDebugging": true,
       "sqlDebugging": true
-    }
-  },
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:5151",
-      "sslPort": 0
     }
   }
 }

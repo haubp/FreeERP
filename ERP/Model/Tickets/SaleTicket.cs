@@ -6,12 +6,14 @@ namespace FreeERP.Model.Tickets
 {
     public class SaleTicket : Ticket
     {
-        public SaleTicket(string userID, string content) : base(TicketType.Sale, userID, content)
+        public string Product;
+        public SaleTicket(string userID, string content, string product) : base(TicketType.Sale, userID, content)
         {
+            Product = product;
         }
         public override string SaveToDB()
         {
-            string connectionString = "server=localhost:3306;database=freeerp;user=root";
+            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
 
             string dbError = "";
 
@@ -21,26 +23,17 @@ namespace FreeERP.Model.Tickets
                 {
                     connection.Open();
 
-                    // Execute your database operations here
-                    string query = "SELECT * FROM your_table";
+                    string query = String.Format($"INSERT INTO SaleTicket " +
+                        $"(date_created, user_id, content, product) " +
+                        "values (CURDATE(), {0}, \"{1}\", \"{2}\")", Convert.ToInt32(UserID), Content, Product);
+                    
                     MySqlCommand command = new MySqlCommand(query, connection);
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            // Access data from the reader
-                            int id = reader.GetInt32("id");
-                            string name = reader.GetString("name");
-
-                            // Do something with the retrieved data
-                        }
-                    }
+                    command.ExecuteReader();
 
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
-                    // Handle any exceptions that occurred during the database operation
                     dbError = ex.Message;
                 }
             }

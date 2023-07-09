@@ -14,10 +14,10 @@ namespace FreeERP.Controllers
         public IActionResult Index()
         {
             string? userId = Request.Cookies["user_id"];
-            if (userId != null)
+            if (userId != null && userId != "")
             {
                 Credential credential = new Credential(userId);
-                switch (credential.type)
+                switch (credential.Type)
                 {
                     case AccountType.Customer:
                         return RedirectToAction("Index", "Customer");
