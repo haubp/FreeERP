@@ -5,12 +5,14 @@ namespace FreeERP.Model.Tickets
     {
         public string UserID { get; set; }
         public string Content { get; set; }
+        public DateTime DateCreated { get; set; }
         public TicketType type { get; set; }
-        public Ticket(TicketType t, string userID, string content)
+        public Ticket(TicketType t, DateTime dt, string userID, string content)
         {
             type = t;
             UserID = userID;
             Content = content;
+            DateCreated = dt;
         }
         public abstract string SaveToDB();
     }

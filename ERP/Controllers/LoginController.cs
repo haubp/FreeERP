@@ -18,7 +18,7 @@ namespace FreeERP.Controllers.Login
             [FromForm(Name = "type")] string type)
         {
             // Query user id
-            Credential credential = new Credential(username, password, type);
+            Credential credential = new (username, password, type);
             string user_id = credential.QueryUserIdFromUserNameAndPassword();
 
             // Set Cookie contains user id

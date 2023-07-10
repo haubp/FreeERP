@@ -22,7 +22,7 @@ namespace FreeERP.Controllers
             }
 
             // Query list of ticket created by Customer
-            Customer customer = new Customer(userId);
+            Customer customer = new (userId);
 
             return View(customer.Tickets());
         }
