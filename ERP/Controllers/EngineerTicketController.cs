@@ -33,7 +33,7 @@ namespace FreeERP.Controllers
         }
 
         [HttpGet]
-        [Route("/ticket/sale/{ticket_id}")]
+        [Route("/ticket/engineer/{ticket_id}")]
         public IActionResult TicketDetail([FromRoute(Name = "ticket_id")] string ticket_id)
         {
             EngineerTicket? ticket = EngineerTicketFactory.QueryTicketById(ticket_id);
