@@ -1,7 +1,7 @@
-@model List<string>
+@model List<UIEngineerTicket>
 
     <body>
-        <div>TICKET FOR CUSTOMER SUCCESS</div>
+    <div class="inline-block w-auto border border-blue-500 m-8">TICKET FOR CUSTOMER SUCCESS</div>
         <div>
             <form action="/ticket/cs" method="POST">
                 <label for="content">Content:</label>
@@ -10,7 +10,7 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
-        <div>TICKET FOR SALE</div>
+    <div class="inline-block w-auto border border-blue-500 m-8">TICKET FOR SALE</div>
         <div>
             <form action="/ticket/sale" method="POST">
                 <label for="content">Content:</label>
@@ -19,11 +19,18 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
-        <div>Ticket for Engineer Department:</div>
+    <div class="inline-block w-auto border border-blue-500 m-8">Ticket for Engineer Department:</div>
         <ul>
             @foreach (var ticket in Model)
             {
-                <li>@ticket</li>
+                <li>
+                    <p>
+                        @ticket.TicketID @ticket.UserID @ticket.DateCreated.ToLongDateString() @ticket.Content
+                    </p>
+                    <p>
+                        <a href="/ticket/engineer/@ticket.TicketID">Detail</a>
+                    </p>
+                </li>
             }
         </ul>
     </body>

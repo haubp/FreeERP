@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FreeERP.Model.Tickets;
+using FreeERP.UIModel;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,13 +26,33 @@ namespace FreeERP.Controllers
 
             userId = "1";
 
-            SaleTicket saleTicket = new SaleTicket(userId, content, product);
+            SaleTicket saleTicket = new (userId, DateTime.Now, content, product);
             string error = saleTicket.SaveToDB();
             if (error != "") {
                 return Ok(error);
             }
 
             return View();
+        }
+
+        [HttpGet]
+        [Route("/ticket/sale/{ticket_id}")]
+        public IActionResult TicketDetail([FromRoute(Name ="ticket_id")] string ticket_id)
+        {
+            SaleTicket? ticket = SaleTicketFactory.QueryTicketById(ticket_id);
+            if (ticket == null)
+            {
+                return BadRequest("Ticket id not found");
+            }
+
+            UISaleTicket uiSaleTicker = UIModelFactory.CreateUIModelSaleTicket(
+                Convert.ToInt64(ticket_id), 
+                Convert.ToInt64(ticket.UserID), 
+                ticket.DateCreated, 
+                ticket.Product, 
+                ticket.Content);
+
+            return View(uiSaleTicker);
         }
     }
 }

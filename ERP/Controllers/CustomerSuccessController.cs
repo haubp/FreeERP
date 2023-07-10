@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FreeERP.Model;
+using FreeERP.UIModel;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,7 +22,7 @@ namespace FreeERP.Controllers
             }
 
             // Query list of customer success ticket
-            CustomerSuccess cs = new CustomerSuccess();
+            UICustomerSuccess cs = new ();
 
             return View(cs.Tickets());
         }

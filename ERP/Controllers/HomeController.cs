@@ -16,7 +16,7 @@ namespace FreeERP.Controllers
             string? userId = Request.Cookies["user_id"];
             if (userId != null && userId != "")
             {
-                Credential credential = new Credential(userId);
+                Credential credential = new (userId);
                 switch (credential.Type)
                 {
                     case AccountType.Customer:

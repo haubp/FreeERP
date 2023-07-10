@@ -3,9 +3,53 @@ using MySql.Data.MySqlClient;
 
 namespace FreeERP.Model.Tickets
 {
+    public class CustomerSuccessTicketFactory
+    {
+        static public CustomerSuccessTicket? QueryTicketById(string ticketID)
+        {
+            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbError = "";
+            Int32 user_id = 0;
+            string content = "";
+            DateTime dateCreated = DateTime.Now;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = String.Format($"SELECT * FROM CustomerSuccessTicket " +
+                        "WHERE ticket_id = {0}", ticketID);
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            user_id = reader.GetInt32("user_id");
+                            content = reader.GetString("content");
+                            dateCreated = reader.GetDateTime("date_created");
+                        }
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    dbError = ex.Message;
+                }
+            }
+
+            if (dbError != "")
+                return null;
+
+            return new CustomerSuccessTicket(Convert.ToString(user_id), dateCreated, content);
+        }
+    }
     public class CustomerSuccessTicket : Ticket
     {
-        public CustomerSuccessTicket(string userID, string content) : base(TicketType.CustomerSuccess, userID, content)
+        public CustomerSuccessTicket(string userID, DateTime dt, string content) : base(TicketType.CustomerSuccess, dt, userID, content)
         {
         }
         public override string SaveToDB()
