@@ -15,6 +15,7 @@ namespace FreeERP.Model.Tickets
             string content = "";
             string product = "";
             DateTime dateCreated = DateTime.Now;
+            string status = "";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -34,6 +35,7 @@ namespace FreeERP.Model.Tickets
                             product = reader.GetString("product");
                             content = reader.GetString("content");
                             dateCreated = reader.GetDateTime("date_created");
+                            status = reader.GetString("status");
                         }
                     }
 
@@ -48,7 +50,7 @@ namespace FreeERP.Model.Tickets
             if (dbError != "")
                 return null;
 
-            return new SaleTicket(Convert.ToString(user_id), dateCreated, content, product);
+            return new SaleTicket(Convert.ToString(user_id), dateCreated, content, product, status);
         }
 
         static public string UpdateTicketStatusById(string ticketID, string status)
@@ -62,8 +64,8 @@ namespace FreeERP.Model.Tickets
                 {
                     connection.Open();
 
-                    string query = String.Format($"UPDATE SaleTicket SET status = {0} " +
-                        "WHERE ticket_id = {1}", status , ticketID);
+                    string query = String.Format($"UPDATE SaleTicket " +
+                        "SET status = \"{0}\" WHERE ticket_id = {1}", status , ticketID);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.ExecuteReader();
@@ -79,10 +81,19 @@ namespace FreeERP.Model.Tickets
             return dbError;
         }
     }
+
+    public class SaleTicketPostData {
+        public string? status { get; set; }
+    }
+
     public class SaleTicket : Ticket
     {
         public string Product;
         public SaleTicket(string userID, DateTime dt, string content, string product) : base(TicketType.Sale, dt, userID, content)
+        {
+            Product = product;
+        }
+        public SaleTicket(string userID, DateTime dt, string content, string product, string status) : base(TicketType.Sale, dt, userID, content, status)
         {
             Product = product;
         }

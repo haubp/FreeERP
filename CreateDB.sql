@@ -11,18 +11,21 @@ CREATE TABLE SaleTicket (
 	date_created DATETIME,
 	content varchar(50),
 	product varchar(50),
+	status varchar(50)
 );
 
 CREATE TABLE CustomerSuccessTicket (  
-        ticket_id int auto_increment primary key,
-        user_id int references User(user_id),
-        date_created DATETIME,
-        content varchar(50)
+    ticket_id int auto_increment primary key,
+    user_id int references User(user_id),
+    date_created DATETIME,
+    content varchar(50),
+	status varchar(50)
 );
 
 CREATE TABLE EngineerTicket (  
-        ticket_id int auto_increment primary key,
-        user_id int references User(user_id),
-        date_created DATETIME,
-        content varchar(50)
+    ticket_id int auto_increment primary key,
+    user_id int references User(user_id),
+    date_created DATETIME,
+    content varchar(50),
+	status varchar(50)
 );

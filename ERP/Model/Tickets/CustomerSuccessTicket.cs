@@ -12,6 +12,7 @@ namespace FreeERP.Model.Tickets
             Int32 user_id = 0;
             string content = "";
             DateTime dateCreated = DateTime.Now;
+            string status = "";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -30,6 +31,7 @@ namespace FreeERP.Model.Tickets
                             user_id = reader.GetInt32("user_id");
                             content = reader.GetString("content");
                             dateCreated = reader.GetDateTime("date_created");
+                            status = reader.GetString("status");
                         }
                     }
 
@@ -44,7 +46,7 @@ namespace FreeERP.Model.Tickets
             if (dbError != "")
                 return null;
 
-            return new CustomerSuccessTicket(Convert.ToString(user_id), dateCreated, content);
+            return new CustomerSuccessTicket(Convert.ToString(user_id), dateCreated, content, status);
         }
 
         static public string UpdateTicketStatusById(string ticketID, string status)
@@ -58,7 +60,8 @@ namespace FreeERP.Model.Tickets
                 {
                     connection.Open();
 
-                    string query = String.Format($"UPDATE CustomerSuccessTicket SET status = {0} " +
+                    string query = String.Format($"UPDATE CustomerSuccessTicket " +
+                        "SET status = \"{0}\" " +
                         "WHERE ticket_id = {1}", status, ticketID);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
@@ -75,9 +78,17 @@ namespace FreeERP.Model.Tickets
             return dbError;
         }
     }
+
+    public class CustomerSuccessTicketPostData {
+        public string? status { get; set; }
+    }
+
     public class CustomerSuccessTicket : Ticket
     {
         public CustomerSuccessTicket(string userID, DateTime dt, string content) : base(TicketType.CustomerSuccess, dt, userID, content)
+        {
+        }
+        public CustomerSuccessTicket(string userID, DateTime dt, string content, string status) : base(TicketType.CustomerSuccess, dt, userID, content, status)
         {
         }
         public override string SaveToDB()

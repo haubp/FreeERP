@@ -35,8 +35,9 @@ namespace FreeERP.UIModel
                             var date_created = reader.GetDateTime("date_created");
                             string product = reader.GetString("product");
                             string content = reader.GetString("content");
+                            string status = reader.GetString("status");
 
-                            tickets.Add(new UISaleTicket(ticket_id, user_id, date_created, product, content));
+                            tickets.Add(new UISaleTicket(ticket_id, user_id, date_created, product, content, status));
                         }
                     }
 

@@ -10,15 +10,16 @@
 <div>
     <label for="selection">Ticket Status:</label>
     <select id="selection" name="selection">
-        <option value="Open">Open</option>
-        <option value="InProgress">In Progress</option>
-        <option value="Pending">Pending</option>
-        <option value="Resolve">Resolve</option>
+        <option value="Open" @(Model.Status == "Open" ? "selected" : "")>Open</option>
+        <option value="InProgress" @(Model.Status == "InProgress" ? "selected" : "")>In Progress</option>
+        <option value="Pending" @(Model.Status == "Pending" ? "selected" : "")>Pending</option>
+        <option value="Resolve" @(Model.Status == "Resolve" ? "selected" : "")>Resolve</option>
     </select>
 </div>
 <div>
     <button onclick="updateTicket()">Submit</button>
 </div>
+<div id="update_result"></div>
 
 <script>
     function updateTicket() {
@@ -30,21 +31,19 @@
 
         var ticketID = @Model.TicketID
 
-        fetch('/sale/ticket/' + ticketID, {
+        fetch('/ticket/sale/' + ticketID, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-            // Handle the response data
-            console.log(data);
+            document.getElementById("update_result").innerHTML = data;
         })
         .catch(error => {
-            // Handle any errors
-            console.error('Error:', error);
+            document.getElementById("update_result").innerHTML = error;
         });
     }
 </script>

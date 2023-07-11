@@ -50,22 +50,23 @@ namespace FreeERP.Controllers
                 Convert.ToInt64(ticket.UserID), 
                 ticket.DateCreated, 
                 ticket.Product, 
-                ticket.Content);
+                ticket.Content,
+                ticket.Status);
 
             return View(uiSaleTicker);
         }
 
         [HttpPost]
         [Route("/ticket/sale/{ticket_id}")]
-        public IActionResult UpdateTicket([FromRoute(Name = "ticket_id")] string ticket_id, [FromBody] string status)
+        public IActionResult UpdateTicket([FromRoute(Name = "ticket_id")] string ticket_id, [FromBody] SaleTicketPostData ticketData)
         {
-            string error = SaleTicketFactory.UpdateTicketStatusById(ticket_id, status);
+            string error = SaleTicketFactory.UpdateTicketStatusById(ticket_id, ticketData.status!);
             if (error != "")
             {
                 return Ok(error);
             }
 
-            return View();
+            return Ok("Ticket update successfully");
         }
     }
 }
