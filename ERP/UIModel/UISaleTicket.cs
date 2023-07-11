@@ -7,13 +7,15 @@
         public string Product { get; set; }
         public string Content { get; set; }
         public DateTime DateCreated { get; set; }
-        public UISaleTicket(Int64 ticketId, long userID, DateTime dateCreated, string product, string content)
+        public String Status { get; set; }
+        public UISaleTicket(Int64 ticketId, long userID, DateTime dateCreated, string product, string content, string status)
         {
             TicketID = ticketId;
             UserID = userID;
             Product = product;
             Content = content;
             DateCreated = dateCreated;
+            Status = status;
         }
     }
 }

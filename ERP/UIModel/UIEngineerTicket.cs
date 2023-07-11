@@ -6,12 +6,14 @@
         public Int64 UserID { get; set; }
         public DateTime DateCreated { get; set; }
         public string Content { get; set; }
-        public UIEngineerTicket(Int64 ticketId,  Int64 userID, DateTime dateCreated, string content)
+        public String Status { get; set; }
+        public UIEngineerTicket(Int64 ticketId,  Int64 userID, DateTime dateCreated, string content, string status)
         {
             TicketID = ticketId;
             UserID = userID;
             DateCreated = dateCreated;
             Content = content;
+            Status = status;
         }
     }
 }

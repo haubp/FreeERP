@@ -37,7 +37,7 @@ namespace FreeERP.Controllers
 
         [HttpGet]
         [Route("/ticket/sale/{ticket_id}")]
-        public IActionResult TicketDetail([FromRoute(Name ="ticket_id")] string ticket_id)
+        public IActionResult TicketDetail([FromRoute(Name = "ticket_id")] string ticket_id)
         {
             SaleTicket? ticket = SaleTicketFactory.QueryTicketById(ticket_id);
             if (ticket == null)
@@ -50,9 +50,23 @@ namespace FreeERP.Controllers
                 Convert.ToInt64(ticket.UserID), 
                 ticket.DateCreated, 
                 ticket.Product, 
-                ticket.Content);
+                ticket.Content,
+                ticket.Status);
 
             return View(uiSaleTicker);
+        }
+
+        [HttpPost]
+        [Route("/ticket/sale/{ticket_id}")]
+        public IActionResult UpdateTicket([FromRoute(Name = "ticket_id")] string ticket_id, [FromBody] SaleTicketPostData ticketData)
+        {
+            string error = SaleTicketFactory.UpdateTicketStatusById(ticket_id, ticketData.status!);
+            if (error != "")
+            {
+                return Ok(error);
+            }
+
+            return Ok("Ticket update successfully");
         }
     }
 }
