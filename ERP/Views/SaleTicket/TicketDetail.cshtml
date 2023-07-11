@@ -5,3 +5,46 @@
 <p>Date Created: @Model.DateCreated.ToShortDateString()</p>
 <p>Product: @Model.Product</p>
 <p>Content: @Model.Content</p>
+
+<div>UPDATE TICKET</div>
+<div>
+    <label for="selection">Ticket Status:</label>
+    <select id="selection" name="selection">
+        <option value="Open">Open</option>
+        <option value="InProgress">In Progress</option>
+        <option value="Pending">Pending</option>
+        <option value="Resolve">Resolve</option>
+    </select>
+</div>
+<div>
+    <button onclick="updateTicket()">Submit</button>
+</div>
+
+<script>
+    function updateTicket() {
+        var selection = document.getElementById("selection").value;
+
+        var data = {
+            status: selection
+        };
+
+        var ticketID = @Model.TicketID
+
+        fetch('/sale/ticket/' + ticketID, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response data
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle any errors
+            console.error('Error:', error);
+        });
+    }
+</script>

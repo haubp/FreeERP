@@ -49,6 +49,19 @@ namespace FreeERP.Controllers
 
             return View(uiEngineerTicker);
         }
+
+        [HttpPost]
+        [Route("/ticket/engineer/{ticket_id}")]
+        public IActionResult UpdateTicket([FromRoute(Name = "ticket_id")] string ticket_id, [FromBody] string status)
+        {
+            string error = EngineerTicketFactory.UpdateTicketStatusById(ticket_id, status);
+            if (error != "")
+            {
+                return Ok(error);
+            }
+
+            return View();
+        }
     }
 }
 

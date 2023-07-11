@@ -46,6 +46,34 @@ namespace FreeERP.Model.Tickets
 
             return new EngineerTicket(Convert.ToString(user_id), dateCreated, content);
         }
+
+        static public string UpdateTicketStatusById(string ticketID, string status)
+        {
+            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbError = "";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = String.Format($"UPDATE EngineerTicket SET status = {0} " +
+                        "WHERE ticket_id = {1}", status, ticketID);
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.ExecuteReader();
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    dbError = ex.Message;
+                }
+            }
+
+            return dbError;
+        }
     }
     public class EngineerTicket : Ticket
     {

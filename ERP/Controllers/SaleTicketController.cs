@@ -37,7 +37,7 @@ namespace FreeERP.Controllers
 
         [HttpGet]
         [Route("/ticket/sale/{ticket_id}")]
-        public IActionResult TicketDetail([FromRoute(Name ="ticket_id")] string ticket_id)
+        public IActionResult TicketDetail([FromRoute(Name = "ticket_id")] string ticket_id)
         {
             SaleTicket? ticket = SaleTicketFactory.QueryTicketById(ticket_id);
             if (ticket == null)
@@ -53,6 +53,19 @@ namespace FreeERP.Controllers
                 ticket.Content);
 
             return View(uiSaleTicker);
+        }
+
+        [HttpPost]
+        [Route("/ticket/sale/{ticket_id}")]
+        public IActionResult UpdateTicket([FromRoute(Name = "ticket_id")] string ticket_id, [FromBody] string status)
+        {
+            string error = SaleTicketFactory.UpdateTicketStatusById(ticket_id, status);
+            if (error != "")
+            {
+                return Ok(error);
+            }
+
+            return View();
         }
     }
 }
