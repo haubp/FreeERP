@@ -29,7 +29,7 @@
             status: selection
         };
 
-        var ticketID = @Model.TicketID
+        var ticketID = @Model.TicketID;
 
         fetch('/ticket/sale/' + ticketID, {
             method: 'POST',

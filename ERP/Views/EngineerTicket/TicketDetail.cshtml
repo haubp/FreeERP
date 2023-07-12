@@ -28,7 +28,7 @@
             status: selection
         };
 
-        var ticketID = @Model.TicketID
+        var ticketID = @Model.TicketID;
 
         fetch('/ticket/engineer/' + ticketID, {
             method: 'POST',
