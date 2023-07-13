@@ -1,4 +1,4 @@
-@model List<UICustomerSuccessTicket>
+@model List<CustomerSuccessTicket>
 
     <body>
     <div class="block w-auto border border-blue-500 m-8">
@@ -26,10 +26,10 @@
             {
                 <li>
                     <p>
-                        @ticket.TicketID @ticket.UserID @ticket.DateCreated.ToLongDateString() @ticket.Content
+                        @ticket.ID @ticket.UserID @ticket.DateCreated.ToLongDateString() @ticket.Content
                     </p>
                     <p>
-                        <a href="/ticket/cs/@ticket.TicketID">Detail</a>
+                        <a href="/ticket/cs/@ticket.ID">Detail</a>
                     </p>
                 </li>
             }

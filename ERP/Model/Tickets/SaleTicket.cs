@@ -7,6 +7,10 @@ namespace FreeERP.Model.Tickets
 {
     public class SaleTicketFactory
     {
+        public static SaleTicket CreateUIModelSaleTicket(long ticketId, long userId, DateTime dateCreated, string product, string content, string status)
+        {
+            return new SaleTicket(Convert.ToString(ticketId), Convert.ToString(userId), dateCreated, product, content, status);
+        }
         static public SaleTicket? QueryTicketById(string ticketID)
         {
             string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
@@ -16,6 +20,7 @@ namespace FreeERP.Model.Tickets
             string product = "";
             DateTime dateCreated = DateTime.Now;
             string status = "";
+            Int32 ticket_id = 0;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -23,14 +28,15 @@ namespace FreeERP.Model.Tickets
                 {
                     connection.Open();
 
-                    string query = String.Format($"SELECT * FROM SaleTicket " +
-                        "WHERE ticket_id = {0}", ticketID);
+                    string query = String.Format($"SELECT * FROM Ticket " +
+                        "WHERE type=\"Sale\" AND ticket_id = {0}", ticketID);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
+                            ticket_id = reader.GetInt32("ticket_id");
                             user_id = reader.GetInt32("user_id");
                             product = reader.GetString("product");
                             content = reader.GetString("content");
@@ -50,7 +56,7 @@ namespace FreeERP.Model.Tickets
             if (dbError != "")
                 return null;
 
-            return new SaleTicket(Convert.ToString(user_id), dateCreated, content, product, status);
+            return new SaleTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), dateCreated, content, product, status);
         }
 
         static public string UpdateTicketStatusById(string ticketID, string status)
@@ -64,8 +70,8 @@ namespace FreeERP.Model.Tickets
                 {
                     connection.Open();
 
-                    string query = String.Format($"UPDATE SaleTicket " +
-                        "SET status = \"{0}\" WHERE ticket_id = {1}", status , ticketID);
+                    string query = String.Format($"UPDATE Ticket " +
+                        "SET status = \"{0}\" WHERE type=\"Sale\" AND ticket_id = {1}", status , ticketID);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.ExecuteReader();
@@ -89,11 +95,11 @@ namespace FreeERP.Model.Tickets
     public class SaleTicket : Ticket
     {
         public string Product;
-        public SaleTicket(string userID, DateTime dt, string content, string product) : base(TicketType.Sale, dt, userID, content)
+        public SaleTicket(string id, string userID, DateTime dt, string content, string product) : base(id, TicketType.Sale, dt, userID, content)
         {
             Product = product;
         }
-        public SaleTicket(string userID, DateTime dt, string content, string product, string status) : base(TicketType.Sale, dt, userID, content, status)
+        public SaleTicket(string id, string userID, DateTime dt, string content, string product, string status) : base(id, TicketType.Sale, dt, userID, content, status)
         {
             Product = product;
         }
@@ -109,9 +115,9 @@ namespace FreeERP.Model.Tickets
                 {
                     connection.Open();
 
-                    string query = String.Format($"INSERT INTO SaleTicket " +
-                        $"(date_created, user_id, content, product) " +
-                        "values (CURDATE(), {0}, \"{1}\", \"{2}\")", Convert.ToInt32(UserID), Content, Product);
+                    string query = String.Format($"INSERT INTO Ticket " +
+                        $"(date_created, user_id, content, product, status, type) " +
+                        "values (CURDATE(), {0}, \"{1}\", \"{2}\", \"{3}\", \"Sale\")", Convert.ToInt32(UserID), Content, Product, Status);
                     
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.ExecuteReader();
