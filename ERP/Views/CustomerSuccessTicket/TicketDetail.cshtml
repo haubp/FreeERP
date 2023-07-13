@@ -1,24 +1,27 @@
 ﻿@model UICustomerSuccessTicket
 
-<h1>Customer Success Ticket Detail</h1>
-<p>User Created: @Model.UserID</p>
-<p>Date Created: @Model.DateCreated.ToShortDateString()</p>
-<p>Content: @Model.Content</p>
+<div class="block w-auto border border-blue-500 m-8">
+    <h1>Customer Success Ticket Detail</h1>
+    <p>User Created: @Model.UserID</p>
+    <p>Date Created: @Model.DateCreated.ToShortDateString()</p>
+    <p>Content: @Model.Content</p>
+    <div></div>
+    <div>UPDATE TICKET</div>
+    <div>
+        <label for="selection">Ticket Status:</label>
+        <select id="selection" name="selection">
+            <option value="Open" @(Model.Status == "Open" ? "selected" : "")>Open</option>
+            <option value="InProgress" @(Model.Status == "InProgress" ? "selected" : "")>In Progress</option>
+            <option value="Pending" @(Model.Status == "Pending" ? "selected" : "")>Pending</option>
+            <option value="Resolve" @(Model.Status == "Resolve" ? "selected" : "")>Resolve</option>
+        </select>
+    </div>
+    <div>
+        <button onclick="updateTicket()">Submit</button>
+    </div>
+    <div id="update_result"></div>
+</div>
 
-<div>UPDATE TICKET</div>
-<div>
-    <label for="selection">Ticket Status:</label>
-    <select id="selection" name="selection">
-        <option value="Open" @(Model.Status == "Open" ? "selected" : "")>Open</option>
-        <option value="InProgress" @(Model.Status == "InProgress" ? "selected" : "")>In Progress</option>
-        <option value="Pending" @(Model.Status == "Pending" ? "selected" : "")>Pending</option>
-        <option value="Resolve" @(Model.Status == "Resolve" ? "selected" : "")>Resolve</option>
-    </select>
-</div>
-<div>
-    <button onclick="updateTicket()">Submit</button>
-</div>
-<div id="update_result"></div>
 
 <script>
     function updateTicket() {

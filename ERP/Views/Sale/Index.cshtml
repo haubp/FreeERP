@@ -1,7 +1,7 @@
 @model List<UISaleTicket>
 
     <body>
-    <div class="inline-block w-auto border border-blue-500 m-8">
+    <div class="block w-auto border border-blue-500 m-8">
         <h1>TICKET FOR CUSTOMER SUCCESS</h1>
         <form action="/ticket/cs" method="POST">
             <label for="content">Content:</label>
@@ -10,7 +10,7 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-    <div class="inline-block w-auto border border-blue-500 m-8">
+    <div class="block w-auto border border-blue-500 m-8">
         <h1>TICKET FOR ENGINEER</h1>
         <form action="/ticket/engineer" method="POST">
             <label for="content">Content:</label>
@@ -19,7 +19,7 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-    <div class="inline-block w-auto border border-blue-500 m-8">
+    <div class="block w-auto border border-blue-500 m-8">
         <h1>Ticket for Sale Department:</h1>
         <ul>
             @foreach (var ticket in Model)
