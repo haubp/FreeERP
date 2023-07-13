@@ -1,4 +1,4 @@
-﻿@model UICustomerSuccessTicket
+﻿@model CustomerSuccessTicket
 
 <div class="block w-auto border border-blue-500 m-8">
     <h1>Customer Success Ticket Detail</h1>
@@ -31,7 +31,7 @@
             status: selection
         };
 
-        var ticketID = @Model.TicketID;
+        var ticketID = @Model.ID;
 
         fetch('/ticket/cs/' + ticketID, {
             method: 'POST',

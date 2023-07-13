@@ -1,4 +1,4 @@
-﻿@model UIEngineerTicket
+﻿@model EngineerTicket
 
 <div class="block w-auto border border-blue-500 m-8">
     <h1>Engineer Ticket Detail</h1>
@@ -30,7 +30,7 @@
             status: selection
         };
 
-        var ticketID = @Model.TicketID;
+        var ticketID = @Model.ID;
 
         fetch('/ticket/engineer/' + ticketID, {
             method: 'POST',

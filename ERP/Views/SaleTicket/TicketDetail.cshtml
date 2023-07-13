@@ -1,4 +1,4 @@
-﻿@model UISaleTicket
+﻿@model SaleTicket
 
 <div class="block w-auto border border-blue-500 m-8">
     <h1>Sale Ticket Detail</h1>
@@ -21,6 +21,17 @@
         <button onclick="updateTicket()">Submit</button>
     </div>
     <div id="update_result"></div>
+    <div>
+        <button onclick="queryComment()">Update Comments</button>
+    </div>
+    <div id="comments"></div>
+    <div id="comment">
+        <form method="post" action="/comment">
+            <input type="text" id="comment" value="" />
+            <button type="submit" onclick="postComment()">Post</button>
+        </form>
+    </div>
+    <div id="postCommentResult"></div>
 </div>
 
 <script>
@@ -31,7 +42,7 @@
             status: selection
         };
 
-        var ticketID = @Model.TicketID;
+        var ticketID = @Model.ID;
 
         fetch('/ticket/sale/' + ticketID, {
             method: 'POST',
@@ -46,6 +57,54 @@
         })
         .catch(error => {
             document.getElementById("update_result").innerHTML = error;
+        });
+    }
+    function postComment() {
+        var ticketID = @Model.ID;
+        var userID = @Model.UserID;
+        var content = document.getElementById("comment").value;
+
+        var data = {
+            TicketID: ticketID,
+            UserID: userID,
+            Content: content,
+        };
+
+        fetch('/comment' + ticketID, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("postCommentResult").innerHTML = data;
+        })
+        .catch(error => {
+            document.getElementById("postCommentResult").innerHTML = error;
+        });
+    }
+    function queryComment() {
+        var ticketID = @Model.ID;
+
+        var data = {
+            TicketID: ticketID
+        };
+
+        fetch('/comment' + ticketID, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("comments").innerHTML = data;
+        })
+        .catch(error => {
+            document.getElementById("comments").innerHTML = error;
         });
     }
 </script>

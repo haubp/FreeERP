@@ -5,8 +5,9 @@ CREATE TABLE User (
 	type varchar(50)
 );
 
-CREATE TABLE SaleTicket (
+CREATE TABLE Ticket (
 	ticket_id int auto_increment primary key,
+	type varchar(50),
 	user_id int references User(user_id),
 	date_created DATETIME,
 	content varchar(50),
@@ -14,18 +15,10 @@ CREATE TABLE SaleTicket (
 	status varchar(50)
 );
 
-CREATE TABLE CustomerSuccessTicket (  
-    ticket_id int auto_increment primary key,
-    user_id int references User(user_id),
-    date_created DATETIME,
-    content varchar(50),
-	status varchar(50)
-);
-
-CREATE TABLE EngineerTicket (  
-    ticket_id int auto_increment primary key,
-    user_id int references User(user_id),
-    date_created DATETIME,
-    content varchar(50),
-	status varchar(50)
-);
+CREATE TABLE Comment {
+	comment_id int auto_increment primary key,
+	ticket_id int references Ticket(ticket_id),
+	user_id int references User(user_id),
+	date_created DATETIME,
+	content varchar(50)
+};
