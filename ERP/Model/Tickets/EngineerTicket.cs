@@ -110,8 +110,8 @@ namespace FreeERP.Model.Tickets
                     connection.Open();
 
                     string query = String.Format($"INSERT INTO Ticket " +
-                        $"(date_created, user_id, content, type) " +
-                        "values (CURDATE(), {0}, \"{1}\", \"Engineer\")", Convert.ToInt32(UserID), Content);
+                        $"(date_created, user_id, content, status, product, type) " +
+                        "values (CURDATE(), {0}, \"{1}\", \"{2}\", \"\", \"Engineer\")", UserID, Content, Status);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.ExecuteReader();
