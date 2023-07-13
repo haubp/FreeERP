@@ -15,10 +15,10 @@ CREATE TABLE Ticket (
 	status varchar(50)
 );
 
-CREATE TABLE Comment {
+CREATE TABLE Comment (
 	comment_id int auto_increment primary key,
 	ticket_id int references Ticket(ticket_id),
 	user_id int references User(user_id),
 	date_created DATETIME,
 	content varchar(50)
-};
+);

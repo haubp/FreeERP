@@ -26,10 +26,8 @@
     </div>
     <div id="comments"></div>
     <div id="comment">
-        <form method="post" action="/comment">
-            <input type="text" id="comment" value="" />
-            <button type="submit" onclick="postComment()">Post</button>
-        </form>
+        <input type="text" id="comment-content" value="" />
+        <button type="submit" onclick="postComment()">Post</button>
     </div>
     <div id="postCommentResult"></div>
 </div>
@@ -62,7 +60,7 @@
     function postComment() {
         var ticketID = @Model.ID;
         var userID = @Model.UserID;
-        var content = document.getElementById("comment").value;
+        var content = document.getElementById("comment-content").value;
 
         var data = {
             TicketID: ticketID,
@@ -70,7 +68,9 @@
             Content: content,
         };
 
-        fetch('/comment' + ticketID, {
+        console.log(data);
+
+        fetch('/comment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -88,20 +88,20 @@
     function queryComment() {
         var ticketID = @Model.ID;
 
-        var data = {
-            TicketID: ticketID
-        };
-
-        fetch('/comment' + ticketID, {
+        fetch('/comment/' + ticketID, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            }
         })
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("comments").innerHTML = data;
+        .then(response => response.json())
+            .then(data => {
+                var content = "";
+                for (var i = 0; i < data.length; i++) {
+                    content += data[i];
+                    content += '<br />';
+                }
+            document.getElementById("comments").innerHTML = content;
         })
         .catch(error => {
             document.getElementById("comments").innerHTML = error;

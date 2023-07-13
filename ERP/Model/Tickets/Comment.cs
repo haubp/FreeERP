@@ -4,12 +4,12 @@ namespace FreeERP.Model.Tickets
 {
     public class CommentFactory
     {
-        public static string CreateComment(string ticket_id, string user_id, string content)
+        public static string CreateComment(Int32 ticket_id, Int32 user_id, string content)
         {
             Comment comment = new(ticket_id, user_id, content);
             return comment.SaveToDB();
         }
-        public static List<string> QueryCommentByTicketId(string ticket_id)
+        public static List<string> QueryCommentByTicketId(Int32 ticket_id)
         {
             List<string> comments = new List<string>();
 
@@ -48,17 +48,17 @@ namespace FreeERP.Model.Tickets
     }
     public class CommentPostData
     {
-        public string? TicketID { get; set; }
-        public string? UserID { get; set; }
-        public string? Content { get; set; }
+        public Int32 TicketID { get; set; } = 0;
+        public Int32 UserID { get; set; } = 0;
+        public string Content { get; set; } = "";
     }
 
     public class Comment
     {
-        public string UserID { get; set; }
+        public Int32 UserID { get; set; }
         public string Content { get; set; }
-        public string TicketID { get; set; }
-        public Comment(string ticket_id, string user_id, string content)
+        public Int32 TicketID { get; set; }
+        public Comment(Int32 ticket_id, Int32 user_id, string content)
         {
             UserID = user_id;
             Content = content;
@@ -77,7 +77,7 @@ namespace FreeERP.Model.Tickets
 
                     string query = string.Format($"INSERT INTO Comment " +
                         $"(date_created, ticket_id, user_id, content) " +
-                        "values (CURDATE(), {0}, \"{1}\", \"{2}\", \"Sale\")", Convert.ToInt32(TicketID), Convert.ToInt32(UserID), Content);
+                        "values (CURDATE(), {0}, {1}, \"{2}\")", TicketID, UserID, Content);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.ExecuteReader();

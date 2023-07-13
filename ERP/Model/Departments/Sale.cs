@@ -35,9 +35,9 @@ namespace FreeERP.Model
                             int ticket_id = reader.GetInt32("ticket_id");
                             int user_id = reader.GetInt32("user_id");
                             var date_created = reader.GetDateTime("date_created");
-                            string product = reader.GetString("product");
-                            string content = reader.GetString("content");
-                            string status = reader.GetString("status");
+                            string? product = reader.GetString("product");
+                            string? content = reader.GetString("content");
+                            string? status = reader.GetString("status");
 
                             tickets.Add(new SaleTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), date_created, content!, product!, status!));
                         }
