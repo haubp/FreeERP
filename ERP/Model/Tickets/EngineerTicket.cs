@@ -1,4 +1,5 @@
 ﻿using System;
+using FreeERP.Utils;
 using MySql.Data.MySqlClient;
 
 namespace FreeERP.Model.Tickets
@@ -11,7 +12,12 @@ namespace FreeERP.Model.Tickets
         }
         static public EngineerTicket? QueryTicketById(string ticketID)
         {
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
             string dbError = "";
             Int32 user_id = 0;
             string content = "";
@@ -57,7 +63,12 @@ namespace FreeERP.Model.Tickets
 
         static public string UpdateTicketStatusById(string ticketID, string status)
         {
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
             string dbError = "";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -99,7 +110,12 @@ namespace FreeERP.Model.Tickets
         }
         public override string SaveToDB()
         {
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
 
             string dbError = "";
 

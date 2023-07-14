@@ -10,7 +10,6 @@ namespace FreeERP.Controllers
     public class HomeController : Controller
     {
         [Route("/home")]
-        [Route("/")]
         public IActionResult Index()
         {
             string? userId = Request.Cookies["user_id"];
@@ -30,6 +29,12 @@ namespace FreeERP.Controllers
                 }
             }
 
+            return View();
+        }
+
+        [Route("/")]
+        public IActionResult EntryPoint()
+        {
             return View();
         }
     }
