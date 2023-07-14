@@ -1,5 +1,6 @@
 using System;
 using FreeERP.Model.Tickets;
+using FreeERP.Utils;
 using MySql.Data.MySqlClient;
 
 namespace FreeERP.Model
@@ -36,7 +37,12 @@ namespace FreeERP.Model
         }
         public string CreateUser()
         {
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
             string dbError = "";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -81,7 +87,12 @@ namespace FreeERP.Model
         }
         public string QueryUserIdFromUserNameAndPassword()
         {
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
             string dbError = "";
 
             string user_id = "";
@@ -131,7 +142,12 @@ namespace FreeERP.Model
         }
         public void QueryUserFromUserId(string user_id)
         {
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
             string dbError = "";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))

@@ -1,5 +1,6 @@
 ﻿using System;
 using FreeERP.Model.Tickets;
+using FreeERP.Utils;
 using MySql.Data.MySqlClient;
 
 namespace FreeERP.Model
@@ -13,7 +14,12 @@ namespace FreeERP.Model
         {
             List<CustomerSuccessTicket> tickets = new();
 
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
             string dbError;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))

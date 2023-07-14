@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using FreeERP.Utils;
+using MySql.Data.MySqlClient;
 
 namespace FreeERP.Model.Tickets
 {
@@ -13,7 +14,12 @@ namespace FreeERP.Model.Tickets
         {
             List<string> comments = new List<string>();
 
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
             string dbError;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -30,8 +36,17 @@ namespace FreeERP.Model.Tickets
                         {
                             string user_id = reader.GetString("user_id");
                             string content = reader.GetString("content");
+                            DateTime d = reader.GetDateTime("date_created");
 
-                            comments.Add($"{user_id} : {content}");
+                            String str = $"<div class=\"flex m-4\">" +
+                                            $"<div class=\"w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center\">\r\n " +
+                                               $" <span class=\"text-gray-700 text-xl font-bold\">{user_id}</span>\r\n" +
+                                            $"</div>" +
+                                            $"<span class=\"ml-4 text-gray-500\">{d.ToString()}</span>" +
+                                         "</div>" +
+                                         $"<div class=\"ml-8 text-xl text-gray-800\">{content}</div>";
+
+                            comments.Add(str);
                         }
                     }
 
@@ -66,7 +81,12 @@ namespace FreeERP.Model.Tickets
         }
         public string SaveToDB()
         {
-            string connectionString = "Server=localhost;Database=freeerp;Uid=root;";
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
             string dbError = "";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))

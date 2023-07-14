@@ -24,8 +24,6 @@ namespace FreeERP.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            userId = "1";
-
             SaleTicket saleTicket = new ("", userId, DateTime.Now, content, product);
             string error = saleTicket.SaveToDB();
             if (error != "") {
