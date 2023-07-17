@@ -7,11 +7,13 @@
     <link href="~/tailwind.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="flex">
-        <h1 class="text-center"><b>Free ERP Program</b></h1>
-        <a href="/home"></a>
+    <div class="m-4 flex">
+        <h1 class="ml-auto mr-auto text-center"><b>Free ERP Program</b></h1>
+        <div class="ml-auto mr-8">
+            <a href="/home"><u>Home</u></a>
+            <a class="ml-2" href="/logout"><u>Logout</u></a>
+        </div>
     </div>
-    
     <div>
         @RenderBody()
     </div>

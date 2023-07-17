@@ -58,7 +58,7 @@ namespace FreeERP.Controllers
         [Route("/ticket/sale/{ticket_id}")]
         public IActionResult UpdateTicket([FromRoute(Name = "ticket_id")] string ticket_id, [FromBody] SaleTicketPostData ticketData)
         {
-            string error = SaleTicketFactory.UpdateTicketStatusById(ticket_id, ticketData.status!);
+            string error = SaleTicketFactory.UpdateTicketStatusById(ticket_id, ticketData.Status!);
             if (error != "")
             {
                 return Ok(error);

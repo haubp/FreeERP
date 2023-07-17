@@ -45,5 +45,13 @@ namespace FreeERP.Controllers.Login
 
             return View();
         }
+
+        [Route("/logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("user_id");
+
+            return RedirectToAction("Index", "Home"); ;
+        }
     }
 }
