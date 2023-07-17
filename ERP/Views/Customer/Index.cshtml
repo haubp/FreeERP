@@ -1,30 +1,45 @@
-@model List<string>
+@model List<CustomerTicket>
 
-    <body>
-        <div>TICKET FOR SALES</div>
-        <div>
-            <form action="/ticket/sale" method="POST">
-                <label for="content">Content:</label>
-                <input type="text" id="content" name="content" required><br><br>
-
-                <input type="radio" name="product" value="product_1" id="product-1-radio">
-                <label for="product-1-radio">Product 1</label><br>
-
-                <input type="radio" name="product" value="product_2" id="product-2-radio">
-                <label for="product-2-radio">Product 2</label><br>
-
-                <input type="radio" name="product" value="product_3" id="product-3-radio">
-                <label for="product-3-radio">Product 3</label><br>
-
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-
-        <div>Tickets created</div>
+<body>
+    <div class="block w-auto border border-blue-500 m-8 p-2">
+        <h1><b>Ticket created by me:</b></h1>
+        <div class="border border-gray-500 m-5"></div>
         <ul>
             @foreach (var ticket in Model)
             {
-                <li>@ticket</li>
+                <li>
+                    <p>
+                        <b>Title:</b> @ticket.Content <br />
+                        <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
+                    </p>
+                    <p>
+                        <a href="/ticket/sale/@ticket.ID"><u><b>Detail</b></u></a>
+                    </p>
+                    <div class="border border-gray-200 m-2"></div>
+                </li>
             }
         </ul>
-    </body>
+    </div>
+    <div class="block w-auto border border-blue-500 m-8 p-2">
+        <h1><b>TICKET FOR SALES</b></h1>
+        <form action="/ticket/sale" method="POST">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
+            <div class="flex m-2">
+                <textarea class="w-11/12 ml-auto mr-auto h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>
+            </div>
+
+            <input type="radio" name="product" value="product_1" id="product-1-radio">
+            <label for="product-1-radio">Product 1</label><br>
+
+            <input type="radio" name="product" value="product_2" id="product-2-radio">
+            <label for="product-2-radio">Product 2</label><br>
+
+            <input type="radio" name="product" value="product_3" id="product-3-radio">
+            <label for="product-3-radio">Product 3</label><br>
+
+            <div class="w-11/12 ml-auto mr-auto">
+                <input class="ml-auto block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>

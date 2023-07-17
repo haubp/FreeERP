@@ -6,13 +6,13 @@ using FreeERP.Utils;
 
 namespace FreeERP.Model.Tickets
 {
-    public class SaleTicketFactory
+    public class CustomerTicketFactory
     {
-        public static SaleTicket CreateUIModelSaleTicket(long ticketId, long userId, DateTime dateCreated, string product, string content, string status)
+        public static CustomerTicket CreateUIModelCustomerTicket(long ticketId, long userId, DateTime dateCreated, string product, string content, string status)
         {
-            return new SaleTicket(Convert.ToString(ticketId), Convert.ToString(userId), dateCreated, content, product, status);
+            return new CustomerTicket(Convert.ToString(ticketId), Convert.ToString(userId), dateCreated, content, product, status);
         }
-        static public SaleTicket? QueryTicketById(string ticketID)
+        static public CustomerTicket? QueryTicketById(string ticketID)
         {
             string dbConfigFilePath = DB.GetDBConfig();
             string connectionString = string.Empty;
@@ -35,7 +35,7 @@ namespace FreeERP.Model.Tickets
                     connection.Open();
 
                     string query = String.Format($"SELECT * FROM Ticket " +
-                        "WHERE type=\"Sale\" AND ticket_id = {0}", ticketID);
+                        "WHERE type=\"Customer\" AND ticket_id = {0}", ticketID);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     using (MySqlDataReader reader = command.ExecuteReader())
@@ -62,7 +62,7 @@ namespace FreeERP.Model.Tickets
             if (dbError != "")
                 return null;
 
-            return new SaleTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), dateCreated, content, product, status);
+            return new CustomerTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), dateCreated, content, product, status);
         }
 
         static public string UpdateTicketStatusById(string ticketID, string status)
@@ -82,7 +82,7 @@ namespace FreeERP.Model.Tickets
                     connection.Open();
 
                     string query = String.Format($"UPDATE Ticket " +
-                        "SET status = \"{0}\" WHERE type=\"Sale\" AND ticket_id = {1}", status , ticketID);
+                        "SET status = \"{0}\" WHERE type=\"Customer\" AND ticket_id = {1}", status, ticketID);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.ExecuteReader();
@@ -99,18 +99,19 @@ namespace FreeERP.Model.Tickets
         }
     }
 
-    public class SaleTicketPostData {
+    public class CustomerTicketPostData
+    {
         public string? Status { get; set; }
     }
 
-    public class SaleTicket : Ticket
+    public class CustomerTicket : Ticket
     {
         public string Product;
-        public SaleTicket(string id, string userID, DateTime dt, string content, string product) : base(id, TicketType.Sale, dt, userID, content)
+        public CustomerTicket(string id, string userID, DateTime dt, string content, string product) : base(id, TicketType.Sale, dt, userID, content)
         {
             Product = product;
         }
-        public SaleTicket(string id, string userID, DateTime dt, string content, string product, string status) : base(id, TicketType.Sale, dt, userID, content, status)
+        public CustomerTicket(string id, string userID, DateTime dt, string content, string product, string status) : base(id, TicketType.Sale, dt, userID, content, status)
         {
             Product = product;
         }
@@ -132,8 +133,8 @@ namespace FreeERP.Model.Tickets
 
                     string query = String.Format($"INSERT INTO Ticket " +
                         $"(date_created, user_id, content, product, status, type) " +
-                        "values (CURDATE(), {0}, \"{1}\", \"{2}\", \"{3}\", \"Sale\")", Convert.ToInt32(UserID), Content, Product, Status);
-                    
+                        "values (CURDATE(), {0}, \"{1}\", \"{2}\", \"{3}\", \"Customer\")", Convert.ToInt32(UserID), Content, Product, Status);
+
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.ExecuteReader();
 

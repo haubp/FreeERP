@@ -1,38 +1,49 @@
 @model List<SaleTicket>
 
-    <body>
-    <div class="block w-auto border border-blue-500 m-8">
-        <h1>TICKET FOR CUSTOMER SUCCESS</h1>
-        <form action="/ticket/cs" method="POST">
-            <label for="content">Content:</label>
-            <input type="text" id="content" name="content" required><br><br>
-
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    <div class="block w-auto border border-blue-500 m-8">
-        <h1>TICKET FOR ENGINEER</h1>
-        <form action="/ticket/engineer" method="POST">
-            <label for="content">Content:</label>
-            <input type="text" id="content" name="content" required><br><br>
-
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    <div class="block w-auto border border-blue-500 m-8">
-        <h1>Ticket for Sale Department:</h1>
+<body>
+    <div class="block w-auto border border-blue-500 m-8 p-4">
+        <h1 class="text-center"><i>Ticket for Sale Department:</i></h1>
+        <div class="border border-gray-500 m-5"></div>
         <ul>
             @foreach (var ticket in Model)
             {
                 <li>
                     <p>
-                        @ticket.ID @ticket.UserID @ticket.DateCreated.ToLongDateString() @ticket.Product @ticket.Content
+                        <b>Title:</b> @ticket.Content <br />
+                        <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
+                        <b>Created by:</b> @ticket.UserID
                     </p>
                     <p>
-                        <a href="/ticket/sale/@ticket.ID">Detail</a>
+                        <a href="/ticket/sale/@ticket.ID"><u><b>Detail</b></u></a>
                     </p>
+                    <div class="border border-gray-200 m-2"></div>
                 </li>
             }
         </ul>
     </div>
-    </body>
+    <div class="block w-auto border border-blue-500 m-8 p-2">
+        <h1><b>TICKET FOR CUSTOMER SUCCESS</b></h1>
+        <form action="/ticket/cs" method="POST">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
+            <div class="flex m-2">
+                <textarea class="w-11/12 ml-auto mr-auto h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>
+            </div>
+            <div class="w-11/12 ml-auto mr-auto">
+                <input class="ml-auto block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    <div class="block w-auto border border-blue-500 m-8 p-2">
+        <h1><b>TICKET FOR ENGINEER</b></h1>
+        <form action="/ticket/cs" method="POST">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
+            <div class="flex m-2">
+                <textarea class="w-11/12 ml-auto mr-auto h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>
+            </div>
+            <div class="w-11/12 ml-auto mr-auto">
+                <input class="ml-auto block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+</body>

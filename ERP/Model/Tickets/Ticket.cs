@@ -33,7 +33,8 @@ namespace FreeERP.Model.Tickets
     {
         CustomerSuccess,
         Sale,
-        Engineer
+        Engineer,
+        Customer
     }
     public enum TicketStatus
     {

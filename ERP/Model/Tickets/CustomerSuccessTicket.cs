@@ -97,7 +97,7 @@ namespace FreeERP.Model.Tickets
     }
 
     public class CustomerSuccessTicketPostData {
-        public string? status { get; set; }
+        public string? Status { get; set; }
     }
 
     public class CustomerSuccessTicket : Ticket
