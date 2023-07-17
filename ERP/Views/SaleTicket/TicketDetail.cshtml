@@ -1,49 +1,51 @@
 ﻿@model SaleTicket
 
-<div class="block w-auto border border-blue-500 m-8">
-    
-    <div class="flex m-4">
-      <div class="p-2 w-8/12 bg-gray-200">
-        <p><b>User ID Created:</b> @Model.UserID</p>
-        <p><b>Date Created:</b> @Model.DateCreated.ToShortDateString()</p>
-        <p><b>Product:</b> @Model.Product</p>
-        <p><b>Content:</b> @Model.Content</p>
-      </div>
-      <div class="p-2 w-4/12 bg-gray-300">
-        <h1 class="text-center"><b>UPDATE TICKET</b></h1>
-        <div class="flex">
-            <label for="selection">Ticket Status:</label>
-            <select class="ml-auto" id="selection" name="selection" onchange="updateTicket()">
-                <option value="Open" @(Model.Status == "Open" ? "selected" : "")>Open</option>
-                <option value="InProgress" @(Model.Status == "InProgress" ? "selected" : "")>In Progress</option>
-                <option value="Pending" @(Model.Status == "Pending" ? "selected" : "")>Pending</option>
-                <option value="Resolve" @(Model.Status == "Resolve" ? "selected" : "")>Resolve</option>
-            </select>
+<body onload="queryComment()">
+    <div class="block w-auto border border-blue-500 m-8">
+
+        <div class="flex m-4">
+            <div class="p-2 w-8/12 bg-gray-200">
+                <p><b>User ID Created:</b> @Model.UserID</p>
+                <p><b>Date Created:</b> @Model.DateCreated.ToShortDateString()</p>
+                <p><b>Product:</b> @Model.Product</p>
+                <p><b>Content:</b> @Model.Content</p>
+            </div>
+            <div class="p-2 w-4/12 bg-gray-300">
+                <h1 class="text-center"><b>UPDATE TICKET</b></h1>
+                <div class="flex">
+                    <label for="selection">Ticket Status:</label>
+                    <select class="ml-auto" id="selection" name="selection" onchange="updateTicket()">
+                        <option value="Open" @(Model.Status == "Open" ? "selected" : "")>Open</option>
+                        <option value="InProgress" @(Model.Status == "InProgress" ? "selected" : "")>In Progress</option>
+                        <option value="Pending" @(Model.Status == "Pending" ? "selected" : "")>Pending</option>
+                        <option value="Resolve" @(Model.Status == "Resolve" ? "selected" : "")>Resolve</option>
+                    </select>
+                </div>
+                <br />
+                <div id="update_result"></div>
+            </div>
         </div>
-        <br />
-        <div id="update_result"></div>
-      </div>
-    </div>
-    
-    <div class="border border-gray-500"></div>
-    
-    <div class="flex m-2">
-        <button onclick="queryComment()" class="ml-auto flex items-center bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-gray-800 font-bold py-2 px-4 rounded">
-          <i class="fas fa-sync mr-2"></i>
-          Refresh
-        </button>
-    </div>
-    <div id="comment" class="flex">
-        <textarea class="m-1 w-10/12 h-20 resize-none rounded border" type="text" id="comment-content" value=""></textarea>
-        <div class="w-1/12 ml-1 mt-1">
-            <button type="submit" onclick="postComment()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded">
-              Save
+
+        <div class="border border-gray-500"></div>
+
+        <div class="flex m-2">
+            <button onclick="queryComment()" class="ml-auto flex items-center bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-gray-800 font-bold py-2 px-4 rounded">
+                <i class="fas fa-sync mr-2"></i>
+                Refresh
             </button>
         </div>
+        <div id="comment" class="flex">
+            <textarea class="m-1 w-10/12 h-20 resize-none rounded border" type="text" id="comment-content" value=""></textarea>
+            <div class="w-1/12 ml-1 mt-1">
+                <button type="submit" onclick="postComment()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded">
+                    Save
+                </button>
+            </div>
+        </div>
+        <div id="postCommentResult"></div>
+        <div id="comments" class="mt-4"></div>
     </div>
-    <div id="postCommentResult"></div>
-    <div id="comments" class="mt-4"></div>
-</div>
+</body>
 
 <script>
     function updateTicket() {

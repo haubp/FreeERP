@@ -1,1 +1,1 @@
-Server=localhost;Database=FreeERP;Uid=root;Pwd=root;
+Server=localhost;Database=freeerp;Uid=root;Pwd=root;
