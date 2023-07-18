@@ -11,14 +11,26 @@ namespace FreeERP.Controllers.Login
 {
     public class LoginController : Controller
     {
-        [Route("/login")]
-        public IActionResult Login(
+        [Route("/register")]
+        public IActionResult Register(
             [FromForm(Name = "username")] string username,
             [FromForm(Name = "password")] string password,
             [FromForm(Name = "type")] string type)
         {
             // Query user id
-            Credential credential = new (username, password, type);
+            Credential credential = new(username, password, type);
+            string dbError = credential.CreateUser();
+
+            return View(dbError);
+        }
+
+        [Route("/login")]
+        public IActionResult Login(
+            [FromForm(Name = "username")] string username,
+            [FromForm(Name = "password")] string password)
+        {
+            // Query user id
+            Credential credential = new (username, password, "");
             string user_id = credential.QueryUserIdFromUserNameAndPassword();
 
             // Set Cookie contains user id

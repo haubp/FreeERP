@@ -29,7 +29,6 @@ namespace FreeERP.Model
                     Type = AccountType.Engineer;
                     break;
             }
-            CreateUser();
         }
         public Credential(string userID)
         {
