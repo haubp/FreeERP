@@ -24,7 +24,17 @@ namespace FreeERP.Controllers
             // Query list of ticket created by Customer
             Customer customer = new (userId);
 
-            return View(customer.Tickets());
+            return View(customer);
+        }
+
+        [HttpPost]
+        [Route("/customer/tier")]
+        public IActionResult UpgradeTier([FromForm(Name = "customerId")] string customerId, [FromForm(Name = "tier")] string tier) {
+            string error = Customer.UpdateCustomerTier(customerId, tier);
+            if (error != "") {
+                return BadRequest(error);
+            }
+            return View();
         }
     }
 }
