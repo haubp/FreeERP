@@ -1,24 +1,22 @@
 ﻿<!DOCTYPE html>
 <html>
 <body>
-    <div class="inline-block w-auto border border-blue-500 m-8">
-        <form action="/login" method="POST">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                <label for="type">Type:</label>
-                <input type="text" id="type" name="type" required>
-            </div>
-            <div class="flex justify-center">
-                <input type="submit" value="Login">
-            </div>
-        </form>
+    <div class="flex justify-center">
+        <div class="inline-block w-auto border border-blue-500 m-8 p-4">
+            <form action="/login" method="POST">
+                <div>
+                    <label for="username"><b>Username:</b></label>
+                    <input class="inline-block w-auto border" type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password"><b>Password : </b></label>
+                    <input class="inline-block w-auto border" type="password" id="password" name="password" required>
+                </div>
+                <div class="w-11/12 pt-4">
+                    <input class="ml-auto mr-auto block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" type="submit" value="Login">
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
