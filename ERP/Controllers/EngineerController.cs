@@ -22,9 +22,9 @@ namespace FreeERP.Controllers
             }
 
             // Query list of engineer ticket
-            Engineer engineer = new ();
+            Engineer engineer = new (userId);
 
-            return View(engineer.Tickets());
+            return View(engineer);
         }
     }
 }

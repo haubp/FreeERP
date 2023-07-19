@@ -22,9 +22,9 @@ namespace FreeERP.Controllers
             }
 
             // Query list of customer success ticket
-            CustomerSuccess cs = new ();
+            CustomerSuccess cs = new (userId);
 
-            return View(cs.Tickets());
+            return View(cs);
         }
     }
 }
