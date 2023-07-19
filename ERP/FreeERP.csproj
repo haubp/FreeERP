@@ -13,6 +13,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
     <Folder Include="Views\Shared\" />
+    <Folder Include="Views\Bill\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -24,6 +25,7 @@
     <None Remove="Model\Tickets\" />
     <None Remove="Controllers\Departments\" />
     <None Remove="Views\Ticket\" />
+    <None Remove="Views\Bill\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\LoginController.cs">

@@ -1,0 +1,13 @@
+﻿@model Bill
+
+<div class="block w-auto border border-blue-500 m-8 p-2">
+    <h1><b>Bill Detail:</b></h1>
+    <p><b>Bill Content:</b> @Model.Content</p>
+    <p><b>Bill Amount:</b> @Model.Amount<span>$</span></p>
+    @using (Html.BeginForm("BillQR", "Bill", new { bill_id = Model.ID }, FormMethod.Post))
+    {
+        <button type="submit" class="mt-4 ml-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded">
+            Checkout
+        </button>
+    }
+</div>

@@ -22,3 +22,12 @@ CREATE TABLE Comment (
 	date_created DATETIME,
 	content varchar(50)
 );
+
+CREATE TABLE Bill (
+    bill_id int auto_increment primary key,
+    date_created DATETIME,
+    user_id int references User(user_id),
+    content varchar(50),
+    amount int,
+    status varchar(50)
+);

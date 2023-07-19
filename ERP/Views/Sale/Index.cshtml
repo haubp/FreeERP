@@ -92,5 +92,25 @@
             </div>
         </form>
     </div>
+    <div class="block w-auto border border-blue-500 m-8 p-2">
+        <h1><b>CREATE BILL</b></h1>
+        <form action="/bill" method="POST">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Customer ID:</label>
+            <div class="flex m-2">
+                <input class="w-4/12 ml-auto mr-auto h-10 resize-none rounded border" type="text" name="UserID" required />
+            </div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
+            <div class="flex m-2">
+                <input class="w-4/12 ml-auto mr-auto h-10 resize-none rounded border" type="text" name="Content" required />
+            </div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Amount:</label>
+            <div class="flex m-2">
+                <input class="w-4/12 ml-auto mr-auto h-10 resize-none rounded border" type="number" name="Amount" required />
+            </div>
+            <div class="w-11/12 ml-auto mr-auto">
+                <input class="ml-auto block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
 
 </body>
