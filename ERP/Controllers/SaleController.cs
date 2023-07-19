@@ -22,9 +22,9 @@ namespace FreeERP.Controllers
             }
 
             // Query list of sale ticket
-            Sale sale = new ();
+            Sale sale = new (userId);
 
-            return View(sale.Tickets());
+            return View(sale);
         }
     }
 }
