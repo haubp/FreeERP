@@ -1,0 +1,28 @@
+﻿@model string
+
+<div class="container mx-auto p-8">
+    <img src="~/qr.png" class="w-32 h-32 mx-auto mb-4 rounded-md shadow-md" />
+
+    <button onclick="checkout()" class="block mx-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-32">
+        <i class="fas fa-sync mr-2"></i> OK
+    </button>
+
+    <div id="update_result" class="mt-4 text-center text-gray-700 italic"></div>
+</div>
+
+<script>
+    function checkout() {
+        var billId = '@Model';
+
+        fetch('/bill/checkout/' + billId, {
+            method: 'POST'
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("update_result").innerHTML = data;
+            })
+            .catch(error => {
+                document.getElementById("update_result").innerHTML = error;
+            });
+    }
+</script>

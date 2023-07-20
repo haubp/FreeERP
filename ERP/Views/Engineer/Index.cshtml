@@ -1,80 +1,83 @@
 @model Engineer
 
-<body>
-    <div class="block w-auto border border-blue-500 m-8 p-2">
-        <h1><b>Ticket created by me:</b></h1>
-        <div class="border border-gray-500 m-5"></div>
-        <ul>
-            @foreach (var ticket in Model.MonitoringTickets())
-            {
-                <li>
-                    <p>
-                        <b>Title:</b> @ticket.Content <br />
-                        <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
-                    </p>
-                    <p>
-                        @if (ticket.type == TicketType.Sale)
-                        {
-                            <a href="/ticket/sale/@ticket.ID"><u><b>Detail</b></u></a>
-                        }
-                        else if (ticket.type == TicketType.Engineer)
-                        {
-                            <a href="/ticket/engineer/@ticket.ID"><u><b>Detail</b></u></a>
-                        }
-                        else if (ticket.type == TicketType.CustomerSuccess)
-                        {
-                            <a href="/ticket/cs/@ticket.ID"><u><b>Detail</b></u></a>
-                        }
+<body class="bg-gray-100">
+    <div class="container mx-auto my-8 p-4">
+        <div class="block w-full md:w-2/3 mx-auto border border-blue-500 p-4 rounded">
+            <h1 class="text-3xl font-bold mb-4">Tickets created by me:</h1>
+            <div class="border border-gray-500 my-5"></div>
+            <ul>
+                @foreach (var ticket in Model.MonitoringTickets())
+                {
+                    <li class="mb-4">
+                        <p>
+                            <b>Title:</b> @ticket.Content <br />
+                            <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
+                        </p>
+                        <p class="mt-2">
+                            @if (ticket.type == TicketType.Sale)
+                            {
+                                <a href="/ticket/sale/@ticket.ID" class="text-blue-500 font-bold underline">Detail</a>
+                            }
+                            else if (ticket.type == TicketType.Engineer)
+                            {
+                                <a href="/ticket/engineer/@ticket.ID" class="text-blue-500 font-bold underline">Detail</a>
+                            }
+                            else if (ticket.type == TicketType.CustomerSuccess)
+                            {
+                                <a href="/ticket/cs/@ticket.ID" class="text-blue-500 font-bold underline">Detail</a>
+                            }
+                        </p>
+                        <div class="border border-gray-200 my-2"></div>
+                    </li>
+                }
+            </ul>
+        </div>
 
-                    </p>
-                    <div class="border border-gray-200 m-2"></div>
-                </li>
-            }
-        </ul>
-    </div>
-    <div class="block w-auto border border-blue-500 m-8 p-4">
-        <h1 class="text-center"><i>Ticket for Engineer Department:</i></h1>
-        <div class="border border-gray-500 m-5"></div>
-        <ul>
-            @foreach (var ticket in Model.Tickets())
-            {
-                <li>
-                    <p>
-                        <b>Title:</b> @ticket.Content <br />
-                        <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
-                        <b>Created by:</b> @ticket.UserID
-                    </p>
-                    <p>
-                        <a href="/ticket/engineer/@ticket.ID"><u><b>Detail</b></u></a>
-                    </p>
-                    <div class="border border-gray-200 m-2"></div>
-                </li>
-            }
-        </ul>
-    </div>
-    <div class="block w-auto border border-blue-500 m-8 p-2">
-        <h1><b>TICKET FOR CUSTOMER SUCCESS</b></h1>
-        <form action="/ticket/cs" method="POST">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
-            <div class="flex m-2">
-                <textarea class="w-11/12 ml-auto mr-auto h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>
-            </div>
-            <div class="w-11/12 ml-auto mr-auto">
-                <input class="ml-auto block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" type="submit" value="Submit">
-            </div>
-        </form>
-    </div>
-    <div class="block w-auto border border-blue-500 m-8 p-2">
-        <h1><b>TICKET FOR SALE</b></h1>
-        <form action="/ticket/sale" method="POST">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
-            <div class="flex m-2">
-                <textarea class="w-11/12 ml-auto mr-auto h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>
-            </div>
-            <div class="w-11/12 ml-auto mr-auto">
-                <input class="ml-auto block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" type="submit" value="Submit">
-            </div>
-        </form>
-    </div>
+        <div class="block w-full md:w-2/3 mx-auto border border-blue-500 p-4 rounded my-8">
+            <h1 class="text-3xl font-bold mb-4 text-center italic">Ticket for Engineer Department:</h1>
+            <div class="border border-gray-500 my-5"></div>
+            <ul>
+                @foreach (var ticket in Model.Tickets())
+                {
+                    <li class="mb-4">
+                        <p>
+                            <b>Title:</b> @ticket.Content <br />
+                            <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
+                            <b>Created by:</b> @ticket.UserID
+                        </p>
+                        <p class="mt-2">
+                            <a href="/ticket/engineer/@ticket.ID" class="text-blue-500 font-bold underline">Detail</a>
+                        </p>
+                        <div class="border border-gray-200 my-2"></div>
+                    </li>
+                }
+            </ul>
+        </div>
 
+        <div class="block w-full md:w-2/3 mx-auto border border-blue-500 p-4 rounded">
+            <h1 class="text-3xl font-bold mb-4">TICKET FOR CUSTOMER SUCCESS</h1>
+            <form action="/ticket/cs" method="POST">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
+                <div class="flex mb-4">
+                    <textarea class="w-full h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>
+                </div>
+                <div class="w-full">
+                    <input class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+
+        <div class="block w-full md:w-2/3 mx-auto border border-blue-500 p-4 rounded">
+            <h1 class="text-3xl font-bold mb-4">TICKET FOR SALE</h1>
+            <form action="/ticket/sale" method="POST">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
+                <div class="flex mb-4">
+                    <textarea class="w-full h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>
+                </div>
+                <div class="w-full">
+                    <input class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
