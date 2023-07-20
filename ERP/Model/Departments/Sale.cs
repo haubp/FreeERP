@@ -13,6 +13,55 @@ namespace FreeERP.Model
         {
             UserID = userId;
         }
+        public List<Bill> QueryBill()
+        {
+            List<Bill> bills = new List<Bill>();
+
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
+            string dbError;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Execute your database operations here
+                    string query = $"SELECT * FROM Bill";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string content = reader.GetString("content");
+                            int amount = reader.GetInt32("amount");
+                            int id = reader.GetInt32("bill_id");
+                            DateTime dateCreated = reader.GetDateTime("date_created");
+                            string status = reader.GetString("status");
+                            Bill bill = new Bill(UserID, content, amount);
+                            bill.ID = id;
+                            bill.DateCreated = dateCreated;
+                            bill.Status = status;
+                            bills.Add(bill);
+                        }
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    dbError = ex.Message;
+                }
+            }
+
+            return bills;
+        }
         public List<SaleTicket> MonitoringTickets()
         {
             List<SaleTicket> tickets = new();

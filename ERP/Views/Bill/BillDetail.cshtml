@@ -1,13 +1,15 @@
 ﻿@model Bill
 
-<div class="block w-auto border border-blue-500 m-8 p-2">
-    <h1><b>Bill Detail:</b></h1>
-    <p><b>Bill Content:</b> @Model.Content</p>
-    <p><b>Bill Amount:</b> @Model.Amount<span>$</span></p>
-    @using (Html.BeginForm("BillQR", "Bill", new { bill_id = Model.ID }, FormMethod.Post))
-    {
-        <button type="submit" class="mt-4 ml-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded">
-            Checkout
-        </button>
-    }
+<div class="container mx-auto max-w-sm bg-white shadow-lg rounded-lg overflow-hidden my-8">
+    <div class="px-6 py-4">
+        <h1 class="text-2xl font-bold mb-4">Bill Detail:</h1>
+        <p class="mb-2"><b>Bill Content:</b> @Model.Content</p>
+        <p class="mb-4"><b>Bill Amount:</b> @Model.Amount<span class="font-semibold">$</span></p>
+        @using (Html.BeginForm("BillQR", "Bill", new { bill_id = Model.ID }, FormMethod.Get))
+        {
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                Checkout
+            </button>
+        }
+    </div>
 </div>

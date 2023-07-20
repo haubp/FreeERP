@@ -30,7 +30,19 @@ namespace FreeERP.Controllers
         [HttpGet]
         [Route("/bill/qr/{bill_id}")]
         public IActionResult BillQR([FromRoute(Name = "bill_id")] string billId) {
-            return View(billId);
+            return View((object)billId);
+        }
+
+        [HttpPost]
+        [Route("/bill/checkout/{bill_id}")]
+        public IActionResult BillCheckout([FromRoute(Name = "bill_id")] string billId)
+        {
+            string error = BillFactory.Pay(billId);
+            if (error != "")
+            {
+                return BadRequest(error);
+            }
+            return Ok("Successfully");
         }
     }
 }

@@ -16,6 +16,7 @@ namespace FreeERP.Model
             string content = "";
             DateTime dateCreated;
             int amount = 0;
+            int userId = 0;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -33,6 +34,7 @@ namespace FreeERP.Model
                             content = reader.GetString("content");
                             dateCreated = reader.GetDateTime("date_created");
                             amount = reader.GetInt32("amount");
+                            userId = reader.GetInt32("user_id");
                         }
                     }
 
@@ -44,7 +46,41 @@ namespace FreeERP.Model
                 }
             }
 
-            return new Bill(billId, content, amount);
+            Bill bill = new Bill(Convert.ToString(userId), content, amount);
+            bill.ID = Convert.ToInt32(billId);
+
+            return bill;
+        }
+        public static string Pay(string billId)
+        {
+            string dbConfigFilePath = DB.GetDBConfig();
+            string connectionString = string.Empty;
+            if (System.IO.File.Exists(dbConfigFilePath))
+            {
+                connectionString = System.IO.File.ReadAllText(dbConfigFilePath);
+            }
+            string dbError = "";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = $"UPDATE Bill SET status=\"PAID\" WHERE bill_id=\"{billId}\"";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.ExecuteReader();
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    dbError = ex.Message;
+                }
+            }
+
+            return dbError;
         }
     }
 	public class Bill
