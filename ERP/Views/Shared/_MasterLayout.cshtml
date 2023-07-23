@@ -6,11 +6,16 @@
     <title>@ViewBag.Title</title>
     <link href="~/tailwind.min.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="m-4 flex">
-        <div class="ml-auto mr-8">
-            <a href="/home"><u>Home</u></a>
-            <a class="ml-2" href="/logout"><u>Logout</u></a>
+<body class="bg-gray-100">
+    <div class="container mx-auto">
+        <div class="flex items-center justify-between bg-blue-500 text-white px-4 py-3 rounded-lg">
+            <div class="flex items-center">
+                <div class="text-xl font-bold mr-4">Logo</div>
+                <a href="/home" class="hover:underline">Home</a>
+            </div>
+            <div>
+                <a href="/logout" class="hover:underline">Logout</a>
+            </div>
         </div>
     </div>
     <div>

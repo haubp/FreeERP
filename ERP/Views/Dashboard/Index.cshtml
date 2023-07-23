@@ -1,0 +1,31 @@
+﻿@model DashBoardData
+
+<body class="bg-gray-100 p-8">
+
+    <div class="container mx-auto">
+
+        <h1 class="text-4xl font-bold mb-4">Dashboard</h1>
+
+        <div class="grid grid-cols-3 gap-4">
+
+            <div class="bg-white rounded-lg shadow-lg p-4">
+                <h2 class="text-xl font-bold mb-2">Tickets Statistics</h2>
+                <p>Total Tickets: @Model.TotalTickets</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-4">
+                <h2 class="text-xl font-bold mb-2">Bills Statistics</h2>
+                <p>Total Bills: @Model.TotalBills</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-4">
+                <h2 class="text-xl font-bold mb-2">Customer Statistics</h2>
+                <p>Total Customers: @Model.TotalCustomers</p>
+                <p>Number of Customers in Each Tier:</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
