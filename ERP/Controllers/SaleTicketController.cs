@@ -16,7 +16,8 @@ namespace FreeERP.Controllers
         [Route("/ticket/sale")]
         public IActionResult CreateSaleTicket(
             [FromForm(Name = "product")] string product,
-            [FromForm(Name = "content")] string content)
+            [FromForm(Name = "content")] string content,
+            [FromForm(Name = "priority")] string priority)
         {
             string? userId = Request.Cookies["user_id"];
             if (userId == null)
@@ -24,7 +25,7 @@ namespace FreeERP.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            SaleTicket saleTicket = new ("", userId, DateTime.Now, content, product);
+            SaleTicket saleTicket = new ("", userId, DateTime.Now, content, product, priority);
             string error = saleTicket.SaveToDB();
             if (error != "") {
                 return Ok(error);

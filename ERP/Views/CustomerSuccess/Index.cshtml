@@ -8,21 +8,21 @@
             <ul>
                 @foreach (var ticket in Model.MonitoringTickets())
                 {
-                    <li class="mb-4">
+                    <li class="mb-4 p-2 border @(ticket.Priority == "Critical" ? "border-red-500" : "border-green-500")">
                         <p>
                             <b>Title:</b> @ticket.Content <br />
                             <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
                         </p>
                         <p class="mt-2">
-                            @if (ticket.type == TicketType.Sale)
+                            @if (ticket.Type == TicketType.Sale)
                             {
                                 <a href="/ticket/sale/@ticket.ID" class="text-blue-500 font-bold underline">Detail</a>
                             }
-                            else if (ticket.type == TicketType.Engineer)
+                            else if (ticket.Type == TicketType.Engineer)
                             {
                                 <a href="/ticket/engineer/@ticket.ID" class="text-blue-500 font-bold underline">Detail</a>
                             }
-                            else if (ticket.type == TicketType.CustomerSuccess)
+                            else if (ticket.Type == TicketType.CustomerSuccess)
                             {
                                 <a href="/ticket/cs/@ticket.ID" class="text-blue-500 font-bold underline">Detail</a>
                             }
@@ -57,6 +57,11 @@
         <div class="block w-full md:w-2/3 mx-auto border border-blue-500 p-4 rounded">
             <h1 class="text-3xl font-bold mb-4">TICKET FOR ENGINEER</h1>
             <form action="/ticket/engineer" method="POST">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="priority">Priority:</label>
+                <div class="flex m-2">
+                    <textarea class="w-11/12 ml-auto mr-auto h-20 resize-none rounded border" type="text" id="priority"
+                              name="priority" required></textarea>
+                </div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
                 <div class="flex mb-4">
                     <textarea class="w-full h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>
@@ -70,6 +75,11 @@
         <div class="block w-full md:w-2/3 mx-auto border border-blue-500 p-4 rounded">
             <h1 class="text-3xl font-bold mb-4">TICKET FOR SALE</h1>
             <form action="/ticket/sale" method="POST">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="priority">Priority:</label>
+                <div class="flex m-2">
+                    <textarea class="w-11/12 ml-auto mr-auto h-20 resize-none rounded border" type="text" id="priority"
+                              name="priority" required></textarea>
+                </div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="content">Content:</label>
                 <div class="flex mb-4">
                     <textarea class="w-full h-20 resize-none rounded border" type="text" id="content" name="content" required></textarea>

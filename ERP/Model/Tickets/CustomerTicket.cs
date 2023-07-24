@@ -27,6 +27,7 @@ namespace FreeERP.Model.Tickets
             DateTime dateCreated = DateTime.Now;
             string status = "";
             Int32 ticket_id = 0;
+            string priority = "";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -48,6 +49,7 @@ namespace FreeERP.Model.Tickets
                             content = reader.GetString("content");
                             dateCreated = reader.GetDateTime("date_created");
                             status = reader.GetString("status");
+                            priority = reader.GetString("priority");
                         }
                     }
 
@@ -62,7 +64,7 @@ namespace FreeERP.Model.Tickets
             if (dbError != "")
                 return null;
 
-            return new CustomerTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), dateCreated, content, product, status);
+            return new CustomerTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), dateCreated, content, product, status, priority);
         }
 
         static public string UpdateTicketStatusById(string ticketID, string status)
@@ -107,11 +109,11 @@ namespace FreeERP.Model.Tickets
     public class CustomerTicket : Ticket
     {
         public string Product;
-        public CustomerTicket(string id, string userID, DateTime dt, string content, string product) : base(id, TicketType.Sale, dt, userID, content)
+        public CustomerTicket(string id, string userID, DateTime dt, string content, string product, string priority) : base(id, TicketType.Sale, dt, userID, content, priority)
         {
             Product = product;
         }
-        public CustomerTicket(string id, string userID, DateTime dt, string content, string product, string status) : base(id, TicketType.Sale, dt, userID, content, status)
+        public CustomerTicket(string id, string userID, DateTime dt, string content, string product, string status, string priority) : base(id, TicketType.Sale, dt, userID, content, status, priority)
         {
             Product = product;
         }
@@ -132,8 +134,8 @@ namespace FreeERP.Model.Tickets
                     connection.Open();
 
                     string query = String.Format($"INSERT INTO Ticket " +
-                        $"(date_created, user_id, content, product, status, type) " +
-                        "values (CURDATE(), {0}, \"{1}\", \"{2}\", \"{3}\", \"Customer\")", Convert.ToInt32(UserID), Content, Product, Status);
+                        $"(date_created, user_id, content, product, status, type, priority) " +
+                        "values (CURDATE(), {0}, \"{1}\", \"{2}\", \"{3}\", \"Customer\", \"{4}\")", Convert.ToInt32(UserID), Content, Product, Status, Priority);
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.ExecuteReader();
