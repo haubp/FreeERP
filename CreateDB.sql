@@ -12,7 +12,8 @@ CREATE TABLE Ticket (
 	date_created DATETIME,
 	content varchar(50),
 	product varchar(50),
-	status varchar(50)
+	status varchar(50),
+	priority varchar(50)
 );
 
 CREATE TABLE Comment (

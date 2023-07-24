@@ -14,7 +14,8 @@ namespace FreeERP.Controllers
     {
         [HttpPost]
         [Route("/ticket/cs")]
-        public IActionResult CreateCSTicket([FromForm(Name = "content")] string content)
+        public IActionResult CreateCSTicket([FromForm(Name = "content")] string content,
+            [FromForm(Name = "priority")] string priority)
         {
             string? userId = Request.Cookies["user_id"];
             if (userId == null)
@@ -22,7 +23,7 @@ namespace FreeERP.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            CustomerSuccessTicket ticket = new CustomerSuccessTicket("", userId, DateTime.Now, content);
+            CustomerSuccessTicket ticket = new CustomerSuccessTicket("", userId, DateTime.Now, content, priority);
             string error = ticket.SaveToDB();
             if (error != "") {
                 return Ok(error);

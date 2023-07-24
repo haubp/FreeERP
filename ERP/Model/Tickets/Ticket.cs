@@ -7,25 +7,28 @@ namespace FreeERP.Model.Tickets
         public string UserID { get; set; }
         public string Content { get; set; }
         public DateTime DateCreated { get; set; }
-        public TicketType type { get; set; }
+        public TicketType Type { get; set; }
         public string Status { get; set; }
-        public Ticket(string id, TicketType t, DateTime dt, string userID, string content)
+        public string Priority { get; set; }
+        public Ticket(string id, TicketType t, DateTime dt, string userID, string content, string priority)
         {
             ID = id;
-            type = t;
+            Type = t;
             UserID = userID;
             Content = content;
             DateCreated = dt;
             Status = "Open";
+            Priority = priority;
         }
-        public Ticket(string id, TicketType t, DateTime dt, string userID, string content, string status)
+        public Ticket(string id, TicketType t, DateTime dt, string userID, string content, string status, string priority)
         {
             ID = id;
-            type = t;
+            Type = t;
             UserID = userID;
             Content = content;
             DateCreated = dt;
             Status = status;
+            Priority = priority;
         }
         public abstract string SaveToDB();
     }
