@@ -8,10 +8,6 @@ namespace FreeERP.Model.Tickets
 {
     public class CustomerTicketFactory
     {
-        public static CustomerTicket CreateUIModelCustomerTicket(long ticketId, long userId, DateTime dateCreated, string product, string content, string status)
-        {
-            return new CustomerTicket(Convert.ToString(ticketId), Convert.ToString(userId), dateCreated, content, product, status);
-        }
         static public CustomerTicket? QueryTicketById(string ticketID)
         {
             string dbConfigFilePath = DB.GetDBConfig();

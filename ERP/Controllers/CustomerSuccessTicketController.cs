@@ -41,14 +41,8 @@ namespace FreeERP.Controllers
             {
                 return BadRequest("Ticket id not found");
             }
-            CustomerSuccessTicket uiCustomerSuccessTicker = CustomerSuccessTicketFactory.CreateUIModelCustomerSuccessTicket(
-                Convert.ToInt64(ticket_id),
-                Convert.ToInt64(ticket.UserID),
-                ticket.DateCreated,
-                ticket.Content,
-                ticket.Status);
 
-            return View(uiCustomerSuccessTicker);
+            return View(ticket);
         }
 
         [HttpPost]

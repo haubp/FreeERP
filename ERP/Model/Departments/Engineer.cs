@@ -12,9 +12,9 @@ namespace FreeERP.Model
         {
             UserID = userId;
         }
-        public List<SaleTicket> MonitoringTickets()
+        public List<Ticket> MonitoringTickets()
         {
-            List<SaleTicket> tickets = new();
+            List<Ticket> tickets = new();
 
             string dbConfigFilePath = DB.GetDBConfig();
             string connectionString = string.Empty;
@@ -46,7 +46,20 @@ namespace FreeERP.Model
                             string status = reader.GetString("status");
                             string priority = reader.GetString("priority");
 
-                            tickets.Add(new SaleTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), date_created, content, product, status, priority));
+                            string type = reader.GetString("type");
+
+                            if (type == "Sale")
+                            {
+                                tickets.Add(new SaleTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), date_created, content, product, status, priority));
+                            }
+                            if (type == "CS")
+                            {
+                                tickets.Add(new CustomerSuccessTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), date_created, content, status, priority));
+                            }
+                            if (type == "Engineer")
+                            {
+                                tickets.Add(new EngineerTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), date_created, content, status, priority));
+                            }
                         }
                     }
 
@@ -91,8 +104,9 @@ namespace FreeERP.Model
                             var date_created = reader.GetDateTime("date_created");
                             string content = reader.GetString("content");
                             string status = reader.GetString("status");
+                            string priority = reader.GetString("priority");
 
-                            tickets.Add(new EngineerTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), date_created, content, status));
+                            tickets.Add(new EngineerTicket(Convert.ToString(ticket_id), Convert.ToString(user_id), date_created, content, status, priority));
                         }
                     }
 
