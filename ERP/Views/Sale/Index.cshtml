@@ -29,7 +29,14 @@
                 <ul>
                     @foreach (var ticket in Model.MonitoringTickets())
                     {
-                        <li class="mb-4 p-2 border @(ticket.Priority == "Critical" ? "border-red-500" : "border-green-500")">
+                        <li class="mb-4 p-2 border @(ticket.Priority == "Critical" ? "bg-red-200" : "border-green-500")">
+                            @if (ticket.Status == "Resolve")
+                            {
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 text-2xl mr-2 ml-auto"></i>
+                                    <span class="text-green-500">Done</span>
+                                </div>
+                            }
                             <p>
                                 <b>Title:</b> @ticket.Content <br />
                                 <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
@@ -61,7 +68,14 @@
                 <ul>
                     @foreach (var ticket in Model.Tickets())
                     {
-                        <li class="mb-4">
+                        <li class="mb-4 p-2 border @(ticket.Priority == "Critical" ? "bg-red-200" : "border-green-500")">
+                            @if (ticket.Status == "Resolve")
+                            {
+                                <div class="flex m-1 items-center">
+                                    <i class="fas fa-check-circle text-green-500 text-2xl mr-2 ml-auto"></i>
+                                    <span class="text-green-500">Done</span>
+                                </div>
+                            }
                             <p>
                                 <b>Title:</b> @ticket.Content <br />
                                 <b>Time created:</b> @ticket.DateCreated.ToLongDateString() <br />
