@@ -21,7 +21,7 @@ namespace FreeERP.Controllers.Login
             Credential credential = new(username, password, type);
             string dbError = credential.CreateUser();
 
-            return View(dbError);
+            return View((object)dbError);
         }
 
         [Route("/login")]

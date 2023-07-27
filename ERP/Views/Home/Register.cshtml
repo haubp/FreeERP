@@ -5,7 +5,7 @@
     <div class="flex justify-center items-center h-screen">
         <div class="inline-block bg-white shadow-lg rounded-lg p-8">
             <h1 class="text-2xl font-bold mb-4 text-center">Login</h1>
-            <form action="/login" method="POST">
+            <form action="/register" method="POST">
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="username">Username:</label>
                     <input class="w-full py-2 px-3 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500" type="text" id="username" name="username" required>
@@ -14,19 +14,18 @@
                     <label class="block text-gray-700 font-bold mb-2" for="password">Password:</label>
                     <input class="w-full py-2 px-3 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500" type="password" id="password" name="password" required>
                 </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="type">Type:</label>
+                    <input class="w-full py-2 px-3 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500" type="text" id="type" name="type" required>
+                </div>
                 <div class="flex justify-center">
                     <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" type="submit">
-                        <i class="fas fa-sign-in-alt mr-2"></i> Login
+                        <i class="fas fa-sign-in-alt mr-2"></i> Register
                     </button>
-
-                </div>
-                <div>
-                    <a href="/home/register" class="block text-gray-700 font-bold mb-2">Don't have account?</a>
                 </div>
             </form>
         </div>
     </div>
-    
 </body>
 
 </html>
