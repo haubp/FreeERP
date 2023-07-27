@@ -32,5 +32,12 @@ namespace FreeERP.Controllers
 
             return View();
         }
+
+        [Route("/home/register")]
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
