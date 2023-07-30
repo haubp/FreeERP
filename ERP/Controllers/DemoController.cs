@@ -10,6 +10,7 @@ namespace FreeERP.Controllers
 {
     public class DemoController : Controller
     {
+        [Route("/")]
         [Route("/demo/index")]
         public IActionResult Index()
         {

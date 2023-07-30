@@ -9,7 +9,6 @@ namespace FreeERP.Controllers
 {
     public class HomeController : Controller
     {
-        [Route("/")]
         [Route("/home")]
         public IActionResult Index()
         {
