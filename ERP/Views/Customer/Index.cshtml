@@ -57,14 +57,37 @@
                 </div>
 
                 <label class="block text-gray-700 text-sm font-bold mb-2">Select a product:</label>
-                <input type="radio" name="product" value="product_1" id="product-1-radio">
-                <label for="product-1-radio" class="mr-4">Product 1</label>
 
-                <input type="radio" name="product" value="product_2" id="product-2-radio">
-                <label for="product-2-radio" class="mr-4">Product 2</label>
-
-                <input type="radio" name="product" value="product_3" id="product-3-radio">
-                <label for="product-3-radio">Product 3</label>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="flex flex-col justify-center w-auto border border-blue-500 m-8 p-4">
+                        <h1 class="text-xl text-center mb-4"><i><b>Product 1</b></i></h1>
+                        <p>Product 1 detail</p>
+                        <p class="mt-2 mb-8 underline">Price: 10$</p>
+                        <div class="flex ml-auto">
+                            <input type="radio" name="product" value="product_1" id="product-1-radio">
+                            <label for="product-1-radio" class="ml-2">Product 1</label>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center w-auto border border-blue-500 m-8 p-4">
+                        <h1 class="text-xl text-center mb-4"><i><b>Product 2</b></i></h1>
+                        <p>Product 2 detail</p>
+                        <p class="mt-2 mb-8 underline">Price: 100$</p>
+                        <div class="flex ml-auto">
+                            <input type="radio" name="product" value="product_2" id="product-2-radio">
+                            <label for="product-2-radio" class="ml-2">Product 2</label>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center w-auto border border-blue-500 m-8 p-4">
+                        <h1 class="text-xl text-center mb-4"><i><b>Product 3</b></i></h1>
+                        <p>Product 3 detail</p>
+                        <p class="mt-2 mb-8 underline">Price: 1000$</p>
+                        <div class="flex ml-auto">
+                            <input type="radio" name="product" value="product_3" id="product-3-radio">
+                            <label for="product-3-radio" class="ml-2">Product 3</label>
+                        </div>
+                    </div>
+                </div>
+                
 
                 <div class="w-full mt-4">
                     <input class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full" type="submit" value="Submit">

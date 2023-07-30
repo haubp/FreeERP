@@ -9,11 +9,14 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'FreeERP' " />
   <ItemGroup>
     <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\demo\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="Views\Bill\" />
+    <Folder Include="wwwroot\demo\" />
+    <Folder Include="Views\Demo\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -26,6 +29,7 @@
     <None Remove="Controllers\Departments\" />
     <None Remove="Views\Ticket\" />
     <None Remove="Views\Bill\" />
+    <None Remove="Views\Demo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\LoginController.cs">
