@@ -71,6 +71,7 @@
             var ticketID = @Model.ID;
             var userID = @Model.UserID;
             var content = document.getElementById("comment-content").value;
+            document.getElementById("comment-content").value = "";
 
             var data = {
                 TicketID: ticketID,
