@@ -17,6 +17,7 @@
     <Folder Include="Views\Bill\" />
     <Folder Include="wwwroot\demo\" />
     <Folder Include="Views\Demo\" />
+    <Folder Include="Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -30,6 +31,7 @@
     <None Remove="Views\Ticket\" />
     <None Remove="Views\Bill\" />
     <None Remove="Views\Demo\" />
+    <None Remove="Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\LoginController.cs">
