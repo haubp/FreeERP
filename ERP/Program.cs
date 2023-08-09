@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddRouting(option => {
 //  option.ConstraintMap.Add("months", typeof(MonthsCustomConstraint));
 // });
+// var builder = WebApllication.CreateBuilder(new WebApplicationOptions() { WebRootPath="myroot" });
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -16,6 +17,7 @@ var app = builder.Build();
 // App.UseHttpsRedirection();
 
 app.UseStaticFiles();
+// app.UseStaticFiles(new StaticFileOptions(){ FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "\\mywebroot")) });
 
 // app.UseRouting();
 // app.UseCors();
