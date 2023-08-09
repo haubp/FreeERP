@@ -2,6 +2,9 @@
 
 var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddTransient<MyCustomMiddleware>(); -> new instance for every request
+// builder.Services.AddRouting(option => {
+//  option.ConstraintMap.Add("months", typeof(MonthsCustomConstraint));
+// });
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -50,6 +53,18 @@ app.UseStaticFiles();
   endpoints.Map("/map1", async (context) => {
     await context.Response.WriteAsync("In Map 1");
   endpoints.Map("files/{filename}.{extension=json}", async (context) => {
+    context.Request.RouteValues["filename"]
+  });
+  endpoints.Map("files/{id:minlength(2):int?}", async (context) => {
+    context.Request.RouteValues["filename"]
+  });
+  endpoints.Map("files/{reportDate:datetime}", async (context) => {
+    context.Request.RouteValues["filename"]
+  });
+  endpoints.Map("files/{name:minlength(3)}", async (context) => {
+    context.Request.RouteValues["filename"]
+  });
+  endpoints.Map("files/{custom:months}", async (context) => {
     context.Request.RouteValues["filename"]
   });
   });
