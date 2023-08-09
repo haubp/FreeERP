@@ -55,7 +55,7 @@ app.UseStaticFiles();
   endpoints.Map("files/{filename}.{extension=json}", async (context) => {
     context.Request.RouteValues["filename"]
   });
-  endpoints.Map("files/{id:int?}", async (context) => {
+  endpoints.Map("files/{id:minlength(2):int?}", async (context) => {
     context.Request.RouteValues["filename"]
   });
   endpoints.Map("files/{reportDate:datetime}", async (context) => {
