@@ -89,7 +89,7 @@ namespace FreeERP.Model
 		public string Content { get; set; }
 		public int Amount { get; set; }
         public int ID { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
         public DateTime DateCreated { get; set; }
 		public Bill(string userId, string content, int amount)
 		{

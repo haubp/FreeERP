@@ -18,6 +18,9 @@
     <Folder Include="wwwroot\demo\" />
     <Folder Include="Views\Demo\" />
     <Folder Include="Middlewares\" />
+    <Folder Include="CustomValidators\" />
+    <Folder Include="CustomModelBinder\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
@@ -32,6 +35,9 @@
     <None Remove="Views\Bill\" />
     <None Remove="Views\Demo\" />
     <None Remove="Middlewares\" />
+    <None Remove="CustomValidators\" />
+    <None Remove="CustomModelBinder\" />
+    <None Remove="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\LoginController.cs">
