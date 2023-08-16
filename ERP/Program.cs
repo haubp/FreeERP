@@ -6,6 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 //  option.ConstraintMap.Add("months", typeof(MonthsCustomConstraint));
 // });
 // var builder = WebApllication.CreateBuilder(new WebApplicationOptions() { WebRootPath="myroot" });
+//builder.Services.AddControllers(option => {
+//    OptionsBuilderConfigurationExtensions.ModelBinderProviders.Insert(0, new TestBinderProvider())
+// });
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
