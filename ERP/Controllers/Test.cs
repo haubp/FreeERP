@@ -33,5 +33,13 @@ namespace FreeERP.Controllers
 
             return PartialView("_ListPartialView", listModel);
         }
+
+        [Route("view-component-dynamic")]
+        public IActionResult GridViewComponent()
+        {
+            TestModel testModel = new ();
+
+            return ViewComponent("Grid", new { x = 1, y = 2 });
+        }
     }
 }

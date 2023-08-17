@@ -21,3 +21,10 @@
         document.querySelector("#programming-language-content").innerHTML = languages;
     });
 </script>
+
+@await Component.InvokeAsync("Grid", new {
+    x = 10,
+    y = 20
+})
+
+<vc:grid></vc:grid>
