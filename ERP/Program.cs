@@ -1,4 +1,6 @@
 ﻿using FreeERP.Middlewares;
+using ServiceContracts;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddTransient<MyCustomMiddleware>(); -> new instance for every request
@@ -10,6 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 //    OptionsBuilderConfigurationExtensions.ModelBinderProviders.Insert(0, new TestBinderProvider())
 // });
 builder.Services.AddControllersWithViews();
+builder.Services.Add(new ServiceDescriptor(
+    typeof(ICitiesService),
+    typeof(CitiesService),
+    ServiceLifetime.Transient
+));
 
 var app = builder.Build();
 

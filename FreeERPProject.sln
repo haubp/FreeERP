@@ -5,6 +5,10 @@ VisualStudioVersion = 25.0.1705.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeERP", "ERP\FreeERP.csproj", "{79907672-1968-40E7-BC59-5D636FA5DAC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{2047D141-25E9-4C96-9B12-B147D45E02DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceContracts", "ServiceContracts\ServiceContracts.csproj", "{B00E45C8-FEEF-4E75-9B81-D8DD72492DEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{79907672-1968-40E7-BC59-5D636FA5DAC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79907672-1968-40E7-BC59-5D636FA5DAC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79907672-1968-40E7-BC59-5D636FA5DAC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2047D141-25E9-4C96-9B12-B147D45E02DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2047D141-25E9-4C96-9B12-B147D45E02DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2047D141-25E9-4C96-9B12-B147D45E02DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2047D141-25E9-4C96-9B12-B147D45E02DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B00E45C8-FEEF-4E75-9B81-D8DD72492DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B00E45C8-FEEF-4E75-9B81-D8DD72492DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B00E45C8-FEEF-4E75-9B81-D8DD72492DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B00E45C8-FEEF-4E75-9B81-D8DD72492DEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
