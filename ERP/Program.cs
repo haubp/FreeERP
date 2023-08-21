@@ -20,6 +20,11 @@ builder.Services.Add(new ServiceDescriptor(
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 // ExceptionHandler -> HSTS -> HttpsRedirection -> StaticFiles -> Routing
 // -> CORS -> Authentication -> Authorization -> Custom Middleware -> Endpoint
 // app.UseExceptionHandler("/Error");
