@@ -11,13 +11,15 @@ namespace FreeERP.Controllers
         private readonly ICitiesService _citiesService;
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IConfiguration _configuration;
 
         // Constructor injection
-        public TestController(ICitiesService service, IServiceScopeFactory serviceScopeFactory, IWebHostEnvironment webHostEnvironment)
+        public TestController(ICitiesService service, IServiceScopeFactory serviceScopeFactory, IWebHostEnvironment webHostEnvironment, IConfiguration configuration)
         {
             _citiesService = service;
             _serviceScopeFactory = serviceScopeFactory;
             _webHostEnvironment = webHostEnvironment;
+            _configuration = configuration;
         }
 
         [Route("/index1")]
@@ -66,6 +68,15 @@ namespace FreeERP.Controllers
         public IActionResult Index5()
         {
             ViewBag.CurrentEnvironment = _webHostEnvironment.EnvironmentName;
+
+            return Ok();
+        }
+
+        // Configuration
+        [Route("/index6")]
+        public IActionResult Index6()
+        {
+            ViewBag.MyKey = _configuration.GetValue<string>("myKey", "default value");
 
             return Ok();
         }

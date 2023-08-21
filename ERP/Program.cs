@@ -69,6 +69,7 @@ app.UseStaticFiles();
  app.UseEndpoint(endpoints => {
   endpoints.Map("/map1", async (context) => {
     await context.Response.WriteAsync("In Map 1");
+  });
   endpoints.Map("files/{filename}.{extension=json}", async (context) => {
     context.Request.RouteValues["filename"]
   });
@@ -84,6 +85,8 @@ app.UseStaticFiles();
   endpoints.Map("files/{custom:months}", async (context) => {
     context.Request.RouteValues["filename"]
   });
+  endpoints.Map("/", async (context) => {
+    await context.Response.WriteAsync(app.Configuration.GetValue<string>("myKey", "default value"));
   });
  });
  */
