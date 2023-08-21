@@ -10,12 +10,14 @@ namespace FreeERP.Controllers
     {
         private readonly ICitiesService _citiesService;
         private readonly IServiceScopeFactory _serviceScopeFactory;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         // Constructor injection
-        public TestController(ICitiesService service, IServiceScopeFactory serviceScopeFactory)
+        public TestController(ICitiesService service, IServiceScopeFactory serviceScopeFactory, IWebHostEnvironment webHostEnvironment)
         {
             _citiesService = service;
             _serviceScopeFactory = serviceScopeFactory;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [Route("/index1")]
@@ -59,6 +61,15 @@ namespace FreeERP.Controllers
                 return Ok();
         }
 
+        // Environment
+        [Route("/index5")]
+        public IActionResult Index5()
+        {
+            ViewBag.CurrentEnvironment = _webHostEnvironment.EnvironmentName;
+
+            return Ok();
+        }
+
         [Route("programming-language")]
         public IActionResult ProgrammingLanguages()
         {
@@ -76,5 +87,7 @@ namespace FreeERP.Controllers
 
             return ViewComponent("Grid", new { x = 1, y = 2 });
         }
+
+
     }
 }
