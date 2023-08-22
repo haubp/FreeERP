@@ -77,6 +77,7 @@ namespace FreeERP.Controllers
         public IActionResult Index6()
         {
             ViewBag.MyKey = _configuration.GetValue<string>("myKey", "default value");
+            ViewBag.WeatherClientID = _configuration.GetValue<string>("weatherapi:ClientID", "default value");
 
             return Ok();
         }
