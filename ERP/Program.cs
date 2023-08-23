@@ -1,4 +1,5 @@
 ﻿using FreeERP.Middlewares;
+using FreeERP.Options;
 using ServiceContracts;
 using Services;
 
@@ -17,6 +18,7 @@ builder.Services.Add(new ServiceDescriptor(
     typeof(CitiesService),
     ServiceLifetime.Transient
 ));
+builder.Services.Configure<WeatherApiOptions>(builder.Configuration.GetSection("weatherapi"));
 
 var app = builder.Build();
 

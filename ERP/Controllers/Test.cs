@@ -4,6 +4,7 @@ using FreeERP.CustomModelBinder;
 using Services;
 using ServiceContracts;
 using FreeERP.Options;
+using Microsoft.Extensions.Options;
 
 namespace FreeERP.Controllers
 {
@@ -13,14 +14,16 @@ namespace FreeERP.Controllers
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IConfiguration _configuration;
+        private readonly WeatherApiOptions _weatherApiOptions;
 
         // Constructor injection
-        public TestController(ICitiesService service, IServiceScopeFactory serviceScopeFactory, IWebHostEnvironment webHostEnvironment, IConfiguration configuration)
+        public TestController(ICitiesService service, IServiceScopeFactory serviceScopeFactory, IWebHostEnvironment webHostEnvironment, IConfiguration configuration, IOptions<WeatherApiOptions> weatherApiOptions)
         {
             _citiesService = service;
             _serviceScopeFactory = serviceScopeFactory;
             _webHostEnvironment = webHostEnvironment;
             _configuration = configuration;
+            _weatherApiOptions = weatherApiOptions.Value;
         }
 
         [Route("/index1")]
