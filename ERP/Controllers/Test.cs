@@ -3,6 +3,7 @@ using FreeERP.Model;
 using FreeERP.CustomModelBinder;
 using Services;
 using ServiceContracts;
+using FreeERP.Options;
 
 namespace FreeERP.Controllers
 {
@@ -78,6 +79,7 @@ namespace FreeERP.Controllers
         {
             ViewBag.MyKey = _configuration.GetValue<string>("myKey", "default value");
             ViewBag.WeatherClientID = _configuration.GetValue<string>("weatherapi:ClientID", "default value");
+            WeatherApiOptions weatherSection = _configuration.GetSection("weatherapi").Get<WeatherApiOptions>();
 
             return Ok();
         }
