@@ -19,6 +19,10 @@ builder.Services.Add(new ServiceDescriptor(
     ServiceLifetime.Transient
 ));
 builder.Services.Configure<WeatherApiOptions>(builder.Configuration.GetSection("weatherapi"));
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.AddJsonFile("MyOwnConfig.json", optional: true, reloadOnChange: true);
+});
 
 var app = builder.Build();
 

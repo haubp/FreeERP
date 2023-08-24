@@ -48,6 +48,9 @@
     <None Remove="Views\Shared\Components\Grid\" />
   </ItemGroup>
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="MyOwnConfig.json" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Controllers\LoginController.cs">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LoginController.cs</LastGenOutput>
