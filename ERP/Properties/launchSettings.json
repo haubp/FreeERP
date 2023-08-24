@@ -11,7 +11,7 @@
     "FreeERP": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:34043",
+      "applicationUrl": "http://localhost:5849",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

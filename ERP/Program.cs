@@ -23,6 +23,7 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 {
     config.AddJsonFile("MyOwnConfig.json", optional: true, reloadOnChange: true);
 });
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
