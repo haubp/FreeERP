@@ -3,6 +3,8 @@ using FreeERP.Model;
 using FreeERP.CustomModelBinder;
 using Services;
 using ServiceContracts;
+using FreeERP.Options;
+using Microsoft.Extensions.Options;
 
 namespace FreeERP.Controllers
 {
@@ -11,13 +13,17 @@ namespace FreeERP.Controllers
         private readonly ICitiesService _citiesService;
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IConfiguration _configuration;
+        private readonly WeatherApiOptions _weatherApiOptions;
 
         // Constructor injection
-        public TestController(ICitiesService service, IServiceScopeFactory serviceScopeFactory, IWebHostEnvironment webHostEnvironment)
+        public TestController(ICitiesService service, IServiceScopeFactory serviceScopeFactory, IWebHostEnvironment webHostEnvironment, IConfiguration configuration, IOptions<WeatherApiOptions> weatherApiOptions)
         {
             _citiesService = service;
             _serviceScopeFactory = serviceScopeFactory;
             _webHostEnvironment = webHostEnvironment;
+            _configuration = configuration;
+            _weatherApiOptions = weatherApiOptions.Value;
         }
 
         [Route("/index1")]
@@ -66,6 +72,17 @@ namespace FreeERP.Controllers
         public IActionResult Index5()
         {
             ViewBag.CurrentEnvironment = _webHostEnvironment.EnvironmentName;
+
+            return Ok();
+        }
+
+        // Configuration
+        [Route("/index6")]
+        public IActionResult Index6()
+        {
+            ViewBag.MyKey = _configuration.GetValue<string>("myKey", "default value");
+            ViewBag.WeatherClientID = _configuration.GetValue<string>("weatherapi:ClientID", "default value");
+            WeatherApiOptions weatherSection = _configuration.GetSection("weatherapi").Get<WeatherApiOptions>();
 
             return Ok();
         }

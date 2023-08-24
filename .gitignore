@@ -2,3 +2,7 @@
 .vs/
 ERP/obj/*
 ERP/bin/*
+Services/obj/*
+Services/bin/*
+ServiceContracts/obj/*
+ServiceContracts/bin/*

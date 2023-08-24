@@ -1,0 +1,6 @@
+{
+  "weatherapi": {
+    "ClientID": "1234",
+    "ClientSecret": "This is a secret"
+  }
+}
