@@ -6,3 +6,7 @@ Services/obj/*
 Services/bin/*
 ServiceContracts/obj/*
 ServiceContracts/bin/*
+CRUDTests/obj/*
+CRUDTests/bin/*
+Entities/bin/*
+Entities/obj/*
