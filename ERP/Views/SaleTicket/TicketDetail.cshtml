@@ -15,10 +15,10 @@
                     <div class="flex">
                         <label for="selection">Ticket Status:</label>
                         <select class="ml-auto" id="selection" name="selection" onchange="updateTicket()">
-                            <option value="Open" @(Model.Status == "Open" ? "selected" : "")>Open</option>
-                            <option value="InProgress" @(Model.Status == "InProgress" ? "selected" : "")>In Progress</option>
-                            <option value="Pending" @(Model.Status == "Pending" ? "selected" : "")>Pending</option>
-                            <option value="Resolve" @(Model.Status == "Resolve" ? "selected" : "")>Resolve</option>
+                            <option value="Open" >Open</option>
+                            <option value="InProgress" >In Progress</option>
+                            <option value="Pending" >Pending</option>
+                            <option value="Resolve" >Resolve</option>
                         </select>
                     </div>
                     <br />

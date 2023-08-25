@@ -2,9 +2,22 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entities.dll": {}
+        }
+      },
       "ServiceContracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/ServiceContracts.dll": {}
         },
@@ -15,6 +28,11 @@
     }
   },
   "libraries": {
+    "Entities/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
+    },
     "ServiceContracts/1.0.0": {
       "type": "project",
       "path": "../ServiceContracts/ServiceContracts.csproj",
@@ -27,32 +45,42 @@
     ]
   },
   "packageFolders": {
-    "/Users/haubui/.nuget/packages/": {}
+    "C:\\Users\\hau.bui\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/haubui/Development/projects/FreeERP/Services/Services.csproj",
+      "projectUniqueName": "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "/Users/haubui/Development/projects/FreeERP/Services/Services.csproj",
-      "packagesPath": "/Users/haubui/.nuget/packages/",
-      "outputPath": "/Users/haubui/Development/projects/FreeERP/Services/obj/",
+      "projectPath": "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\Services\\Services.csproj",
+      "packagesPath": "C:\\Users\\hau.bui\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\Services\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/Users/haubui/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\hau.bui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/haubui/Development/projects/FreeERP/ServiceContracts/ServiceContracts.csproj": {
-              "projectPath": "/Users/haubui/Development/projects/FreeERP/ServiceContracts/ServiceContracts.csproj"
+            "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\ServiceContracts\\ServiceContracts.csproj": {
+              "projectPath": "C:\\Users\\hau.bui\\OneDrive - OPSWAT\\Desktop\\BT\\hoachdinhnguonlucdoanhnghiep\\FreeERP\\ServiceContracts\\ServiceContracts.csproj"
             }
           }
         }
@@ -82,7 +110,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
       }
     }
   }
