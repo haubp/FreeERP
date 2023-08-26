@@ -19,6 +19,7 @@ namespace CRUDTests
             _countriesService = new CountriesService();
         }
 
+        #region AddCountry
         [Fact]
         public void AddCountry_NullCountry()
         {
@@ -83,9 +84,84 @@ namespace CRUDTests
 
             // Act
             CountryResponse response = _countriesService.AddCountry(request);
+            List<CountryResponse> countries_from_GetAllCountries = _countriesService.GetAllCountries();
 
             // Assert
             Assert.True(response.CountryID != Guid.Empty);
+            Assert.Contains(response, countries_from_GetAllCountries);
         }
+
+        #endregion
+
+        #region GetAllCountries
+
+        [Fact]
+        public void GetAllCountries_EmptyList()
+        {
+            // Act
+            List<CountryResponse> actual_country_response_list = _countriesService.GetAllCountries();
+
+            // Assert
+            Assert.Empty(actual_country_response_list);
+        }
+
+        [Fact]
+        public void GetAllCountry_AddFewCountries()
+        {
+            // Arrange
+            List<CountryAddRequest> country_request_list = new List<CountryAddRequest>() {
+                new CountryAddRequest() { CountryName = "VietNam" },
+                new CountryAddRequest() { CountryName = "Singaport" }
+            };
+
+            // Act 
+            List<CountryResponse> countries_list_from_add_country = new List<CountryResponse>();
+            foreach (CountryAddRequest country_request in country_request_list)
+            {
+                countries_list_from_add_country.Add(_countriesService.AddCountry(country_request));
+            }
+
+            List<CountryResponse> actualCountryResponseList = _countriesService.GetAllCountries();
+
+            foreach (CountryResponse expected_country in countries_list_from_add_country)
+            {
+                Assert.Contains(expected_country, actualCountryResponseList);
+            }
+        }
+
+        #endregion
+
+        #region GetCountryByCountryId
+
+        [Fact]
+        public void GetCountryByCountryID_NullCountryID()
+        {
+            // Arrange
+            Guid? countryID = null;
+
+            // Act
+            CountryResponse? countryResponse = _countriesService.GetCountryByCountryId(countryID);
+
+            // Assert
+            Assert.Null(countryResponse);
+        }
+
+        [Fact]
+        public void GetCountryByCountryID_ValidCountry()
+        {
+            // Arrange
+            CountryAddRequest country_add_request = new CountryAddRequest() { 
+                CountryName = "VietNam"
+            };
+            CountryResponse country_response_from_add_request = _countriesService.AddCountry(country_add_request);
+
+            // Act
+            CountryResponse? country_response_from_get = _countriesService.GetCountryByCountryId(country_response_from_add_request.CountryID);
+
+            // Assert
+            Assert.Equal(country_response_from_add_request, country_response_from_get);
+        }
+
+        #endregion
     }
 }
