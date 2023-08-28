@@ -8,6 +8,7 @@ using ServiceContracts.DTO;
 using Entities;
 using System.ComponentModel.DataAnnotations;
 using Services.Helpers;
+using ServiceContracts.Enums;
 
 namespace Services
 {
@@ -64,6 +65,36 @@ namespace Services
         }
 
         public List<PersonResponse> GetFilteredPersons(string searchBy, string? searchString)
+        {
+            List<PersonResponse> allPersons = GetAllPersons();
+
+            List<PersonResponse> matchingPersons = allPersons;
+
+            if (string.IsNullOrEmpty(searchBy) || string.IsNullOrEmpty(searchString))
+            {
+                return matchingPersons;
+            }
+
+            switch (searchBy)
+            {
+                case nameof(Person.PersonName):
+                    matchingPersons = allPersons.Where(
+                        temp => string.IsNullOrEmpty(temp.PersonName) || temp.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+                    ).ToList();
+                    break;
+                case nameof(Person.Email):
+                    matchingPersons = allPersons.Where(
+                        temp => string.IsNullOrEmpty(temp.Email) || temp.Email.Contains(searchString!, StringComparison.OrdinalIgnoreCase)
+                    ).ToList();
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return matchingPersons;
+        }
+
+        public List<PersonResponse> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderEnum sortOrder)
         {
             throw new NotImplementedException();
         }
