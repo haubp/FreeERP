@@ -96,7 +96,69 @@ namespace Services
 
         public List<PersonResponse> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderEnum sortOrder)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(sortBy))
+            {
+                return allPersons;
+            }
+            List<PersonResponse> sortedPersons = (sortBy, sortOrder)
+            switch
+            {
+                (nameof(PersonResponse.PersonName), SortOrderEnum.ASC)
+                    => allPersons.OrderBy(temp => temp.PersonName, StringComparer.OrdinalIgnoreCase).ToList(),
+                (nameof(PersonResponse.PersonName), SortOrderEnum.DESC)
+                    => allPersons.OrderByDescending(temp => temp.PersonName, StringComparer.OrdinalIgnoreCase).ToList(),
+                (nameof(PersonResponse.Email), SortOrderEnum.ASC)
+                    => allPersons.OrderBy(temp => temp.Email, StringComparer.OrdinalIgnoreCase).ToList(),
+                (nameof(PersonResponse.Email), SortOrderEnum.DESC)
+                    => allPersons.OrderByDescending(temp => temp.Email, StringComparer.OrdinalIgnoreCase).ToList(),
+                _ => allPersons
+            };
+
+            return sortedPersons;
+        }
+
+        public PersonResponse? UpdatePerson(PersonUpdateRequest? personUpdateRequest)
+        {
+            if (personUpdateRequest == null)
+            {
+                throw new ArgumentNullException(nameof(personUpdateRequest));
+            }
+
+            // Model validation
+            ValidationHelper.ModelValidation(personUpdateRequest);
+
+            Person? matchingPerson = _persons.FirstOrDefault(temp => temp.PersonID == personUpdateRequest.PersonID);
+            if (matchingPerson == null)
+            {
+                throw new ArgumentException("Given person id doesn't exist");
+            }
+
+            matchingPerson.PersonName = personUpdateRequest.PersonName;
+            matchingPerson.PersonID = personUpdateRequest.PersonID;
+            matchingPerson.Email = personUpdateRequest.Email;
+            matchingPerson.DateOfBirth = personUpdateRequest.DateOfBirth;
+            matchingPerson.Gender = personUpdateRequest.Gender.ToString();
+            matchingPerson.CountryID = personUpdateRequest.CountryID;
+            matchingPerson.Address = personUpdateRequest.Address;
+            matchingPerson.ReceiveNewsLetters = personUpdateRequest.ReceiveNewsLetters;
+
+            return matchingPerson.ToPersonResponse();
+        }
+
+        public bool DeletePerson(Guid? personID)
+        {
+            if (personID == null)
+            {
+                throw new ArgumentNullException(nameof(personID));
+            }
+            Person? person = _persons.FirstOrDefault(temp => temp.PersonID == personID);
+            if (person == null)
+            {
+                return false;
+            }
+            _persons.RemoveAll(temp => temp.PersonID == personID);
+
+            return true;
         }
     }
 }

@@ -322,7 +322,7 @@ namespace CRUDTests
         #region GetSortedPersons
 
         [Fact]
-        public void GetSortedPersons_()
+        public void GetSortedPersons_SortedByPersonNameDescending()
         {
             // Arrange
             CountryAddRequest country_request_1 = new CountryAddRequest()
@@ -378,6 +378,158 @@ namespace CRUDTests
             {
                 Assert.Equal(person_responses[i], persons_list_from_sorted[i]);
             }
+        }
+
+        #endregion
+
+        #region UpdatePerson
+
+        [Fact]
+        public void UpdatePerson_NullPerson()
+        {
+            // Arrange
+            PersonUpdateRequest? person_update_request = null;
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => {
+                // Act
+                PersonResponse? person_response = _personsService.UpdatePerson(person_update_request);
+            });
+        }
+
+        [Fact]
+        public void UpdatePerson_InvalidPersonID()
+        {
+            // Arrange
+            PersonUpdateRequest? person_update_request = new PersonUpdateRequest()
+            {
+                PersonID = Guid.NewGuid(),
+            };
+
+            // Assert
+            Assert.Throws<ArgumentException>(() => {
+                // Act
+                PersonResponse? person_response = _personsService.UpdatePerson(person_update_request);
+            });
+        }
+
+        [Fact]
+        public void UpdatePerson_PersonNameIsNull()
+        {
+            // Arrange
+            CountryAddRequest country = new CountryAddRequest() { 
+                CountryName = "UK"
+            };
+            CountryResponse country_response_from_add = _countryService.AddCountry(country);
+            PersonAddRequest person_add_request = new PersonAddRequest() {
+                PersonName = "hau",
+                Email = "hau@gmail.com",
+                Address = "address",
+                CountryID = country_response_from_add.CountryID,
+                DateOfBirth = DateTime.Parse("1996-07-10"),
+                Gender = GenderOption.Male,
+                ReceiveNewsLetters = true
+            };
+            PersonResponse person_response_from_add = _personsService.AddPerson(person_add_request);
+            PersonUpdateRequest? person_update_request = person_response_from_add.ToPersonUpdateRequest();
+            person_update_request.PersonName = null;
+
+            // Assert
+            Assert.Throws<ArgumentException>(() => {
+                // Add
+                _personsService.UpdatePerson(person_update_request);
+            });
+        }
+
+        [Fact]
+        public void UpdatePerson_PersonFullDetailsUpdation()
+        {
+            // Arrange
+            CountryAddRequest country = new CountryAddRequest()
+            {
+                CountryName = "UK"
+            };
+            CountryResponse country_response_from_add = _countryService.AddCountry(country);
+            PersonAddRequest person_add_request = new PersonAddRequest()
+            {
+                PersonName = "hau",
+                Email = "hau@gmail.com",
+                Address = "address",
+                CountryID = country_response_from_add.CountryID,
+                DateOfBirth = DateTime.Parse("1996-07-10"),
+                Gender = GenderOption.Male,
+                ReceiveNewsLetters = true
+            };
+            PersonResponse person_response_from_add = _personsService.AddPerson(person_add_request);
+            PersonUpdateRequest? person_update_request = person_response_from_add.ToPersonUpdateRequest();
+            person_update_request.PersonName = "William";
+            person_update_request.Email = "William@gmail.com";
+            PersonResponse? person_response_from_update = _personsService.UpdatePerson(person_update_request);
+
+            PersonResponse? person_response_from_get = _personsService.GetPersonByPersonID(person_response_from_update?.PersonID);
+
+            // Assert
+            Assert.Equal(person_response_from_get, person_response_from_update);
+        }
+
+        #endregion
+
+        #region DeletePerson
+
+        [Fact]
+        public void DeletePerson_ValidPersonID()
+        {
+            // Arrange
+            CountryAddRequest country = new CountryAddRequest()
+            {
+                CountryName = "UK"
+            };
+            CountryResponse country_response_from_add = _countryService.AddCountry(country);
+            PersonAddRequest person_add_request = new PersonAddRequest()
+            {
+                PersonName = "hau",
+                Email = "hau@gmail.com",
+                Address = "address",
+                CountryID = country_response_from_add.CountryID,
+                DateOfBirth = DateTime.Parse("1996-07-10"),
+                Gender = GenderOption.Male,
+                ReceiveNewsLetters = true
+            };
+            PersonResponse person_response_from_add = _personsService.AddPerson(person_add_request);
+
+            // Act
+            bool isDeleted = _personsService.DeletePerson(person_response_from_add.PersonID);
+
+            // Assert
+            Assert.True(isDeleted);
+        }
+
+        [Fact]
+        public void DeletePerson_InvalidPersonID()
+        {
+            // Arrange
+            CountryAddRequest country = new CountryAddRequest()
+            {
+                CountryName = "UK"
+            };
+            CountryResponse country_response_from_add = _countryService.AddCountry(country);
+            PersonAddRequest person_add_request = new PersonAddRequest()
+            {
+                PersonName = "hau",
+                Email = "hau@gmail.com",
+                Address = "address",
+                CountryID = country_response_from_add.CountryID,
+                DateOfBirth = DateTime.Parse("1996-07-10"),
+                Gender = GenderOption.Male,
+                ReceiveNewsLetters = true
+            };
+            PersonResponse person_response_from_add = _personsService.AddPerson(person_add_request);
+
+            // Act
+            bool isDeleted = _personsService.DeletePerson(Guid.NewGuid());
+
+            // Assert
+            Assert.False(isDeleted);
         }
 
         #endregion
