@@ -1,4 +1,6 @@
-﻿@inject ICitiesService citiesServiceInView 
+﻿@model TestModel
+
+@inject ICitiesService citiesServiceInView 
 
 <h1>Test</h1>
 
@@ -34,3 +36,7 @@
 })
 
 <vc:grid></vc:grid>
+
+<form>
+    <input asp-for="Name" />
+</form>
