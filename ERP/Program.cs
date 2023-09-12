@@ -2,6 +2,8 @@
 using FreeERP.Options;
 using ServiceContracts;
 using Services;
+using Microsoft.EntityFrameworkCore;
+using Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddTransient<MyCustomMiddleware>(); -> new instance for every request
@@ -24,6 +26,9 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
     config.AddJsonFile("MyOwnConfig.json", optional: true, reloadOnChange: true);
 });
 builder.Services.AddHttpClient();
+builder.Services.AddDbContext<PersonDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 

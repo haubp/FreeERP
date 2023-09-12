@@ -106,6 +106,9 @@ namespace FreeERP.Controllers
             return ViewComponent("Grid", new { x = 1, y = 2 });
         }
 
-
+        [Route("[action]/{id}")] // Match /test/edit/1
+        public IActionResult Edit(Guid id) { 
+            return View(); 
+        }
     }
 }

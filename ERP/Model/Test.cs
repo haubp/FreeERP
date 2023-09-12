@@ -12,6 +12,7 @@ namespace FreeERP.Model
         [Required(ErrorMessage = "{0} is permanently")]
         [Display(Name = "Test Name")]
         [StringLength(40, MinimumLength = 3, ErrorMessage = "{0} length is at least {2}, max {1}")]
+        [DataType(DataType.Text)]
         public string? Name { get; set; }
 
         [MinimumYearValidator(1996, ErrorMessage = "Minimum is {0}")]
